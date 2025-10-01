@@ -39,19 +39,16 @@ export function Hero() {
       opacity: {
         duration: 1.5,
         times: flickerTimes,
-        ease: "easeOut",
         delay: 0.6,
       },
       filter: {
         duration: 1.5,
         times: flickerTimes,
-        ease: "easeOut",
         delay: 0.6,
       },
       scale: {
         duration: 1.5,
         times: flickerTimes,
-        ease: "easeOut",
         delay: 0.6,
       },
     },
@@ -86,19 +83,16 @@ export function Hero() {
       opacity: {
         duration: 1.4,
         times: flickerTimes,
-        ease: "easeOut",
         delay: 0.9, // Irregular offset for overlapping effect (0.6 + 0.3)
       },
       filter: {
         duration: 1.4,
         times: flickerTimes,
-        ease: "easeOut",
         delay: 0.9,
       },
       scale: {
         duration: 1.4,
         times: flickerTimes,
-        ease: "easeOut",
         delay: 0.9,
       },
     },
