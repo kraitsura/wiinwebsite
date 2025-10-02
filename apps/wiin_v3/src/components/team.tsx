@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion'
 
 interface TeamProps {
-	readyToWiinRef: React.RefObject<HTMLDivElement>
+	readyToWiinRef: React.RefObject<HTMLDivElement | null>
 }
 
 export function Team({ readyToWiinRef }: TeamProps) {
