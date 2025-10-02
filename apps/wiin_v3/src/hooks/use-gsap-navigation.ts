@@ -50,8 +50,16 @@ export function useGsapNavigation() {
 			}
 		}
 
-		// For non-GSAP sections (like mission), use simple scrollIntoView
-		target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+		// For non-GSAP sections (like mission), calculate scroll position with offset
+		const rect = target.getBoundingClientRect()
+		const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+		const headerOffset = 80 // Account for fixed header
+		const targetPosition = rect.top + scrollTop - headerOffset
+
+		window.scrollTo({
+			top: targetPosition,
+			behavior: 'smooth'
+		})
 	}, [])
 
 	return { navigateToSection }
