@@ -25,8 +25,12 @@ export function Hero({ heroLeftRef, missionSectionRef, missionCardsRef, heroFixe
 	const hasAnimated = hasPlayedInCurrentLoad
 
 	useEffect(() => {
-		// Mark as played for subsequent navigations
-		hasPlayedInCurrentLoad = true
+		// Mark as played after animations complete (2.5s covers both animations)
+		const timer = setTimeout(() => {
+			hasPlayedInCurrentLoad = true
+		}, 2500)
+
+		return () => clearTimeout(timer)
 	}, [])
 	// Condensed non-uniform times array - fewer flickers, same convergence pattern:
 	// First interval (0→0.1): LONGEST pause - 10% of timeline

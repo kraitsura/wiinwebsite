@@ -3,10 +3,11 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGsapNavigation } from '@/hooks/use-gsap-navigation'
 
 export function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
+	const { navigateToSection } = useGsapNavigation()
 
 	const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
 		e.preventDefault()
@@ -14,34 +15,7 @@ export function Header() {
 
 		// Small delay to allow menu to close before scrolling
 		setTimeout(() => {
-			const target = document.querySelector(targetId)
-			if (!target) return
-
-			// For method and team, use simple scrollIntoView
-			if (targetId === '#method' || targetId === '#team') {
-				target.scrollIntoView({ behavior: 'smooth', block: 'start' })
-				return
-			}
-
-			// For mission, use calculated position approach
-			const rect = target.getBoundingClientRect()
-			const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-			const targetPosition = rect.top + scrollTop
-
-			window.scrollTo({
-				top: targetPosition,
-				behavior: 'smooth'
-			})
-
-			// For mission section, refresh ScrollTrigger animations after scroll completes
-			// This ensures the scroll-based animations trigger properly
-			if (targetId === '#mission') {
-				setTimeout(() => {
-					if (typeof ScrollTrigger !== 'undefined') {
-						ScrollTrigger.refresh()
-					}
-				}, 1000)
-			}
+			navigateToSection(targetId)
 		}, 300)
 	}
 

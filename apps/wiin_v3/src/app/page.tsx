@@ -27,6 +27,11 @@ export default function Page() {
 	const [heroFixed, setHeroFixed] = useState(true)
 	const [absoluteTop, setAbsoluteTop] = useState(0)
 
+	// Scroll to top on mount
+	useEffect(() => {
+		window.scrollTo(0, 0)
+	}, [])
+
 	// Wiining Way section scroll animations with delays
 	const wiiningWayTitleRef = useScrollAnimation({ y: 100, opacity: 0, start: '20% 90%', end: '50% 90%', scrub: 2, delay: 0.3 })
 	const wiiningWayCardsRef = useScrollAnimation({ y: 100, opacity: 0, start: '30% 90%', end: '70% 90%', stagger: 0.2, scrub: 2, delay: 0.5 })

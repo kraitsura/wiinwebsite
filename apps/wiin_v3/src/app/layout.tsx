@@ -26,6 +26,20 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
+			<head>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `
+							if (history.scrollRestoration) {
+								history.scrollRestoration = 'manual';
+							}
+							window.addEventListener('beforeunload', function() {
+								window.scrollTo(0, 0);
+							});
+						`,
+					}}
+				/>
+			</head>
 			<body className={`font-mono ${GeistMono.variable} ${bebasNeue.variable} antialiased`}>
 				<Suspense fallback={null}>{children}</Suspense>
 				<Analytics />
