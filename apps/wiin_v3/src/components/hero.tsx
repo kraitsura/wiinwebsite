@@ -1,8 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 
-export function Hero() {
+interface HeroProps {
+	heroFixed: boolean
+	pinOffset: number
+}
+
+export function Hero({ heroFixed, pinOffset }: HeroProps) {
 	// Condensed non-uniform times array - fewer flickers, same convergence pattern:
 	// First interval (0→0.1): LONGEST pause - 10% of timeline
 	// Second interval (0.15→0.35): LONG pause - 20%
@@ -99,11 +105,16 @@ export function Hero() {
 	}
 
 	return (
-		<section
-			id="hero"
-			className="min-h-screen flex flex-col items-center justify-center px-4 py-20"
-		>
-			<div className="max-w-5xl w-full space-y-12">
+		<section id="hero" className="relative min-h-screen">
+			{/* Fixed Left Section - WIIN, Power Your Day, Buttons */}
+			<div
+				className={`${
+					heroFixed ? 'fixed' : 'absolute'
+				} left-0 h-screen w-full md:w-1/2 flex flex-col justify-center px-4 md:px-12 space-y-8 z-10`}
+				style={{
+					top: heroFixed ? 0 : `${pinOffset}px`,
+				}}
+			>
 				<div className="space-y-6">
 					<motion.h1
 						className="text-[12vw] md:text-[8rem] font-bold leading-none tracking-tight text-balance lowercase"
@@ -124,22 +135,6 @@ export function Hero() {
 				</div>
 
 				<motion.div
-					className="space-y-2 max-w-2xl ml-auto text-right"
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					transition={{
-						duration: 1,
-						ease: 'easeOut',
-						delay: 2.4,
-					}}
-				>
-					<p className="text-sm md:text-base leading-tight">WELLNESS ORAL NICOTINE POUCHES</p>
-					<p className="text-xs md:text-sm leading-tight text-muted-foreground">
-						THE FIRST NICOTINE POUCH THAT'S ACTUALLY GOOD FOR YOUR GUMS. REPAIR. REFRESH. RECHARGE.
-					</p>
-				</motion.div>
-
-				<motion.div
 					className="flex flex-col sm:flex-row gap-4"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
@@ -155,6 +150,40 @@ export function Hero() {
 					<button className="border-4 border-foreground bg-background text-foreground px-8 py-4 text-lg font-bold hover:border-[#20B2AA] hover:text-[#20B2AA] transition-all duration-300">
 						LEARN MORE
 					</button>
+				</motion.div>
+			</div>
+
+			{/* Right Section - Scrollable Content */}
+			<div className="min-h-screen flex items-center justify-end px-4 md:px-12 py-20">
+				<motion.div
+					className="space-y-6 max-w-md flex flex-col items-end"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{
+						duration: 1,
+						ease: 'easeOut',
+						delay: 2.4,
+					}}
+				>
+					{/* Product Image */}
+					<div className="w-48 md:w-64">
+						<Image
+							src="/zynbox.webp"
+							alt="WIIN Nicotine Pouches"
+							width={400}
+							height={400}
+							className="w-full h-auto"
+							priority
+						/>
+					</div>
+
+					{/* Text Content */}
+					<div className="space-y-2 text-right">
+						<p className="text-sm md:text-base leading-tight">ORAL WELLNESS NICOTINE POUCHES</p>
+						<p className="text-xs md:text-sm leading-tight text-muted-foreground">
+							THE FIRST NICOTINE POUCH THAT'S GOOD FOR YOUR GUMS.
+						</p>
+					</div>
 				</motion.div>
 			</div>
 		</section>

@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { Header } from "@/components/header"
 import { useScrollAnimation, useLoadAnimation } from "@/hooks/use-scroll-animation"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
@@ -96,8 +97,8 @@ export default function HomePage() {
   const heroSubtitleRef = useLoadAnimation({ y: 100, opacity: 0, duration: 1, delay: 0.5 })
   const heroButtonsRef = useLoadAnimation({ y: 100, opacity: 0, duration: 1, delay: 0.7 })
 
-  const missionTitleRef = useScrollAnimation({ y: 100, opacity: 0, start: "20% 90%", end: "50% 90%" })
-  const missionCardsRef = useScrollAnimation({ y: 100, opacity: 0, start: "30% 90%", end: "70% 90%", stagger: 0.2 })
+  const missionTitleRef = useScrollAnimation({ y: 100, opacity: 0, start: "20% 90%", end: "50% 90%", scrub: 2 })
+  const missionCardsRef = useScrollAnimation({ y: 100, opacity: 0, start: "30% 90%", end: "70% 90%", stagger: 0.2, scrub: 2 })
 
   // Note: Method section and onwards don't use individual scroll animations
   // because they're part of the takeover animation
@@ -130,32 +131,10 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-hidden">
-      {/* Seamless Header */}
-      <header className="seamless-header p-4">
-        <nav className="flex items-center justify-between max-w-7xl mx-auto">
-          <div className="text-2xl font-bold tracking-wider">WIIN</div>
-          <div className="hidden md:flex space-x-8 text-sm uppercase tracking-widest">
-            <a href="#product" className="hover:text-primary transition-colors">
-              PRODUCT
-            </a>
-            <a href="#method" className="hover:text-primary transition-colors">
-              METHOD
-            </a>
-            <a href="#team" className="hover:text-primary transition-colors">
-              TEAM
-            </a>
-          </div>
-          <Button
-            variant="outline"
-            className="border-2 border-foreground bg-transparent hover:bg-primary hover:text-primary-foreground text-sm uppercase tracking-widest"
-          >
-            SHOP
-          </Button>
-        </nav>
-      </header>
+      <Header />
 
       {/* Hero Section */}
-      <section className="py-32 px-4 mt-16 scroll-snap-align-start">
+      <section className="py-32 px-4 mt-16">
         <div className="max-w-7xl mx-auto text-center">
           <h1 ref={heroTitleRef} className="text-6xl md:text-8xl font-bold mb-8 tracking-wider">
             WIIN
@@ -185,7 +164,7 @@ export default function HomePage() {
       </section>
 
       {/* Mission Section */}
-      <section className="py-24 px-4 scroll-snap-align-start">
+      <section className="py-24 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 ref={missionTitleRef} className="text-4xl md:text-6xl font-bold mb-16 tracking-wider">
             REPAIR. REFRESH. RECHARGE.

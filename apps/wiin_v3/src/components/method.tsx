@@ -30,29 +30,29 @@ export function Method() {
 	]
 
 	return (
-		<section id="method" className="min-h-screen flex items-center justify-center px-4 py-20">
-			<div className="max-w-5xl w-full space-y-12">
+		<section id="method" className="min-h-screen flex items-center justify-end px-4 md:px-12 py-20">
+			<div className="max-w-2xl w-full md:w-1/2 space-y-8">
 				<motion.div
 					ref={headingRef}
 					className="space-y-6"
-					initial={{ opacity: 0, y: 30 }}
-					animate={headingInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+					initial={{ opacity: 0, x: 50 }}
+					animate={headingInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
 					transition={{ duration: 0.8, ease: 'easeOut' }}
 				>
 					<h2 className="text-5xl md:text-7xl font-bold">THE METHOD</h2>
-					<p className="text-xl md:text-2xl leading-relaxed max-w-3xl">
+					<p className="text-xl md:text-2xl leading-relaxed">
 						FORMULATED WITH NAD+, PEPTIDES, EXOSOMES, AND OTHER POWERFUL DENTAL INGREDIENTS,
 						DESIGNED TO REVERSE GUM DAMAGE AND AGGRESSIVE GUM RECESSION CAUSED BY NICOTINE POUCH
 						USAGE.
 					</p>
 				</motion.div>
 
-				<div className="grid sm:grid-cols-2 gap-6">
+				<div className="space-y-6">
 					{ingredients.map((ingredient, index) => (
 						<motion.div
 							key={ingredient.name}
-							initial={{ opacity: 0, y: 40 }}
-							whileInView={{ opacity: 1, y: 0 }}
+							initial={{ opacity: 0, x: 50 }}
+							whileInView={{ opacity: 1, x: 0 }}
 							viewport={{ once: true, margin: '-100px' }}
 							transition={{
 								duration: 0.6,
@@ -60,7 +60,7 @@ export function Method() {
 								delay: index * 0.15,
 							}}
 						>
-							<div className="border-4 border-foreground p-8 bg-card hover:bg-[#20B2AA] hover:text-white transition-all duration-300 group h-full">
+							<div className="border-4 border-foreground p-8 bg-card hover:bg-[#20B2AA] hover:text-white transition-all duration-300 group">
 								<h3 className="text-3xl font-bold mb-4">{ingredient.name}</h3>
 								<p className="text-lg">{ingredient.description}</p>
 							</div>
@@ -70,8 +70,8 @@ export function Method() {
 
 				<motion.div
 					ref={calloutRef}
-					initial={{ opacity: 0, scale: 0.95 }}
-					animate={calloutInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+					initial={{ opacity: 0, x: 50 }}
+					animate={calloutInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
 					transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
 				>
 					<div className="border-4 border-foreground bg-secondary text-secondary-foreground p-8 hover:border-[#20B2AA] transition-all duration-300">

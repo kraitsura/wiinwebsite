@@ -13,13 +13,12 @@ export function Mission() {
 	const rechargeInView = useInView(rechargeRef, { once: true, margin: '-100px' })
 
 	return (
-		<section id="mission" className="min-h-screen flex items-center justify-center px-4 py-20">
-			<div className="max-w-5xl w-full grid md:grid-cols-2 gap-12">
+		<section id="mission" className="min-h-screen flex items-center justify-end px-4 md:px-12 py-20">
+			<div className="max-w-2xl w-full md:w-1/2 space-y-8">
 				<motion.div
 					ref={repairRef}
-					className="space-y-6"
-					initial={{ opacity: 0, y: 50 }}
-					animate={repairInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+					initial={{ opacity: 0, x: 50 }}
+					animate={repairInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
 					transition={{ duration: 0.8, ease: 'easeOut' }}
 				>
 					<div className="border-4 border-foreground p-8 bg-card hover:border-[#20B2AA] transition-all duration-300 group">
@@ -34,9 +33,8 @@ export function Mission() {
 
 				<motion.div
 					ref={refreshRef}
-					className="space-y-6"
-					initial={{ opacity: 0, y: 50 }}
-					animate={refreshInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+					initial={{ opacity: 0, x: 50 }}
+					animate={refreshInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
 					transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
 				>
 					<div className="border-4 border-foreground p-8 bg-card hover:border-[#20B2AA] transition-all duration-300 group">
@@ -51,9 +49,8 @@ export function Mission() {
 
 				<motion.div
 					ref={rechargeRef}
-					className="md:col-span-2"
-					initial={{ opacity: 0, scale: 0.95 }}
-					animate={rechargeInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+					initial={{ opacity: 0, x: 50 }}
+					animate={rechargeInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
 					transition={{ duration: 0.8, ease: 'easeOut', delay: 0.4 }}
 				>
 					<div className="border-4 border-foreground p-8 bg-primary text-primary-foreground hover:bg-[#20B2AA] hover:text-foreground hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">

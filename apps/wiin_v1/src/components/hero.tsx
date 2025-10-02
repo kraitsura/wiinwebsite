@@ -135,7 +135,7 @@ export function Hero() {
 				>
 					<p className="text-sm md:text-base leading-tight">WELLNESS ORAL NICOTINE POUCHES</p>
 					<p className="text-xs md:text-sm leading-tight text-muted-foreground">
-						THE FIRST NICOTINE POUCH THAT'S ACTUALLY GOOD FOR YOUR GUMS. REPAIR. REFRESH. RECHARGE.
+						THE FIRST NICOTINE POUCH THAT'S ACTUALLY GOOD FOR YOUR GUMS.
 					</p>
 				</motion.div>
 
