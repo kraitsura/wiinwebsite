@@ -60,7 +60,7 @@ export function Method() {
 								delay: index * 0.15,
 							}}
 						>
-							<div className="border-4 border-foreground p-8 bg-card hover:bg-[#20B2AA] hover:text-white transition-all duration-300 group">
+							<div className="border-4 border-foreground p-8 bg-card hover:bg-primary hover:text-primary-foreground transition-all duration-300 group">
 								<h3 className="text-3xl font-bold mb-4">{ingredient.name}</h3>
 								<p className="text-lg">{ingredient.description}</p>
 							</div>
@@ -74,7 +74,7 @@ export function Method() {
 					animate={calloutInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
 					transition={{ duration: 0.8, ease: 'easeOut', delay: 0.2 }}
 				>
-					<div className="border-4 border-foreground bg-secondary text-secondary-foreground p-8 hover:border-[#20B2AA] transition-all duration-300">
+					<div className="border-4 border-foreground bg-secondary text-secondary-foreground p-8 hover:border-primary transition-all duration-300">
 						<p className="text-2xl md:text-3xl font-bold text-center">
 							HEALTHY NICOTINE POUCHES THAT ARE GOOD FOR YOUR GUMS
 						</p>

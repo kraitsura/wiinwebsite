@@ -1,9 +1,16 @@
 import { Analytics } from '@vercel/analytics/next'
 import { GeistMono } from 'geist/font/mono'
+import { Bebas_Neue } from 'next/font/google'
 import type { Metadata } from 'next'
 import type React from 'react'
 import { Suspense } from 'react'
 import './globals.css'
+
+const bebasNeue = Bebas_Neue({
+	weight: '400',
+	subsets: ['latin'],
+	variable: '--font-bebas',
+})
 
 export const metadata: Metadata = {
 	title: 'WIIN - Power Your Day',
@@ -19,7 +26,7 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={`font-mono ${GeistMono.variable}`}>
+			<body className={`font-mono ${GeistMono.variable} ${bebasNeue.variable} antialiased`}>
 				<Suspense fallback={null}>{children}</Suspense>
 				<Analytics />
 			</body>

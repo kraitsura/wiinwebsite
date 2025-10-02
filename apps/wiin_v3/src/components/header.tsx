@@ -3,9 +3,47 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 export function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+	const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+		e.preventDefault()
+		setIsMenuOpen(false)
+
+		// Small delay to allow menu to close before scrolling
+		setTimeout(() => {
+			const target = document.querySelector(targetId)
+			if (!target) return
+
+			// For method and team, use simple scrollIntoView
+			if (targetId === '#method' || targetId === '#team') {
+				target.scrollIntoView({ behavior: 'smooth', block: 'start' })
+				return
+			}
+
+			// For mission, use calculated position approach
+			const rect = target.getBoundingClientRect()
+			const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+			const targetPosition = rect.top + scrollTop
+
+			window.scrollTo({
+				top: targetPosition,
+				behavior: 'smooth'
+			})
+
+			// For mission section, refresh ScrollTrigger animations after scroll completes
+			// This ensures the scroll-based animations trigger properly
+			if (targetId === '#mission') {
+				setTimeout(() => {
+					if (typeof ScrollTrigger !== 'undefined') {
+						ScrollTrigger.refresh()
+					}
+				}, 1000)
+			}
+		}, 300)
+	}
 
 	return (
 		<>
@@ -32,39 +70,36 @@ export function Header() {
 						animate={{ y: 0 }}
 						exit={{ y: '-100%' }}
 						transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-						className="fixed inset-0 z-40 flex flex-col items-center justify-center"
-						style={{ backgroundColor: '#20B2AA' }}
+						className="fixed inset-0 z-40 flex items-center justify-start bg-primary px-4 md:px-8"
 					>
-						<nav className="space-y-8 text-center">
-							<a
-								href="#hero"
-								className="block text-4xl md:text-6xl font-bold text-white hover:opacity-70 transition-opacity"
-								onClick={() => setIsMenuOpen(false)}
-							>
-								HOME
-							</a>
-							<a
-								href="#mission"
-								className="block text-4xl md:text-6xl font-bold text-white hover:opacity-70 transition-opacity"
-								onClick={() => setIsMenuOpen(false)}
-							>
-								MISSION
-							</a>
-							<a
-								href="#method"
-								className="block text-4xl md:text-6xl font-bold text-white hover:opacity-70 transition-opacity"
-								onClick={() => setIsMenuOpen(false)}
-							>
-								METHOD
-							</a>
-							<a
-								href="#team"
-								className="block text-4xl md:text-6xl font-bold text-white hover:opacity-70 transition-opacity"
-								onClick={() => setIsMenuOpen(false)}
-							>
-								TEAM
-							</a>
-						</nav>
+						<div className="flex w-full max-w-7xl mx-auto">
+							<h2 className="text-6xl md:text-8xl font-black text-white w-[30%] flex-shrink-0">
+								MENU
+							</h2>
+							<nav className="flex flex-col justify-center space-y-8 pl-8 md:pl-16">
+								<a
+									href="#mission"
+									className="block text-3xl md:text-5xl font-light text-white hover:opacity-70 transition-opacity"
+									onClick={(e) => handleNavClick(e, '#mission')}
+								>
+									MISSION
+								</a>
+								<a
+									href="#method"
+									className="block text-3xl md:text-5xl font-light text-white hover:opacity-70 transition-opacity"
+									onClick={(e) => handleNavClick(e, '#method')}
+								>
+									METHOD
+								</a>
+								<a
+									href="#team"
+									className="block text-3xl md:text-5xl font-light text-white hover:opacity-70 transition-opacity"
+									onClick={(e) => handleNavClick(e, '#team')}
+								>
+									TEAM
+								</a>
+							</nav>
+						</div>
 					</motion.div>
 				)}
 			</AnimatePresence>

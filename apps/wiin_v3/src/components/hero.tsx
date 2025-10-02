@@ -2,13 +2,32 @@
 
 import { motion } from 'framer-motion'
 import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect } from 'react'
 
 interface HeroProps {
+	heroLeftRef: React.RefObject<HTMLDivElement>
+	missionSectionRef: React.RefObject<HTMLDivElement>
+	missionCardsRef: React.RefObject<HTMLDivElement>
 	heroFixed: boolean
-	pinOffset: number
+	absoluteTop: number
+	aboutCardRef: React.RefObject<HTMLAnchorElement>
+	repairCardRef: React.RefObject<HTMLDivElement>
+	refreshCardRef: React.RefObject<HTMLDivElement>
+	rechargeCardRef: React.RefObject<HTMLDivElement>
 }
 
-export function Hero({ heroFixed, pinOffset }: HeroProps) {
+// Module-level variable: persists during client navigation, resets on page reload
+let hasPlayedInCurrentLoad = false
+
+export function Hero({ heroLeftRef, missionSectionRef, missionCardsRef, heroFixed, absoluteTop, aboutCardRef, repairCardRef, refreshCardRef, rechargeCardRef }: HeroProps) {
+	// Check module variable to determine if animations should play
+	const hasAnimated = hasPlayedInCurrentLoad
+
+	useEffect(() => {
+		// Mark as played for subsequent navigations
+		hasPlayedInCurrentLoad = true
+	}, [])
 	// Condensed non-uniform times array - fewer flickers, same convergence pattern:
 	// First interval (0→0.1): LONGEST pause - 10% of timeline
 	// Second interval (0.15→0.35): LONG pause - 20%
@@ -68,22 +87,22 @@ export function Hero({ heroFixed, pinOffset }: HeroProps) {
 			scale: 0.98,
 		},
 		animate: {
-			opacity: [0, 0.08, 0, 0.25, 0, 0.4, 0.22, 0.6, 0.45, 0.82, 0.88, 1],
+			opacity: [0, 0.08, 0, 0.25, 0, 0.4, 0.22, 0.6, 0.75, 0.82, 0.92, 1],
 			filter: [
 				'brightness(0.3)',
-				'brightness(1.9)',
-				'brightness(0.6)',
-				'brightness(2.0)', // Intensity spike
-				'brightness(0.5)',
-				'brightness(1.6)',
+				'brightness(1.3)',
+				'brightness(1.2)',
+				'brightness(1)', // Intensity spike
+				'brightness(1.2)',
+				'brightness(0.73)',
 				'brightness(0.95)',
-				'brightness(1.4)',
+				'brightness(1.1)',
 				'brightness(1.12)',
-				'brightness(1.25)',
-				'brightness(1.08)',
+				'brightness(1.3)',
+				'brightness(1.12)',
 				'brightness(1)',
 			],
-			scale: [0.98, 0.99, 0.987, 1, 0.99, 1.007, 0.997, 1.003, 1, 1.001, 1.0005, 1],
+			scale: [0.98, 0.99, 0.987, 0.995, 0.99, 1.007, 0.997, 1.003, 1, 1.001, 1.0005, 1],
 		},
 		transition: {
 			opacity: {
@@ -105,86 +124,167 @@ export function Hero({ heroFixed, pinOffset }: HeroProps) {
 	}
 
 	return (
-		<section id="hero" className="relative min-h-screen">
-			{/* Fixed Left Section - WIIN, Power Your Day, Buttons */}
+		<section id="hero" className="relative">
+			{/* Pinned Left Section - WIIN, Power Your Day, Buttons */}
 			<div
+				ref={heroLeftRef}
 				className={`${
-					heroFixed ? 'fixed' : 'absolute'
-				} left-0 h-screen w-full md:w-1/2 flex flex-col justify-center px-4 md:px-12 space-y-8 z-10`}
-				style={{
-					top: heroFixed ? 0 : `${pinOffset}px`,
-				}}
+				heroFixed ? 'md:fixed md:top-1/2 md:-translate-y-1/2' : 'md:absolute md:-translate-y-1/2'
+			} left-0 w-full md:w-1/2 flex flex-col justify-center px-4 md:px-12 space-y-4 md:space-y-8 z-10 py-8 md:py-0`}
+			style={{
+				top: !heroFixed ? `${absoluteTop}px` : undefined,
+			}}
 			>
-				<div className="space-y-6">
+				{/* Video Background - only show on first animation */}
+				{/* {!hasAnimated && ( */}
+					<div className="absolute left-40 top-1/2 -translate-x-1/3 -translate-y-1/2 hidden md:block z-0">
+						<div className="border-4 border-foreground shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] overflow-hidden bg-background">
+							<video
+								src="/skateedit.mp4"
+								autoPlay
+								loop
+								muted
+								playsInline
+								className="w-[400px] h-[400px] md:w-[550px] md:h-[450px] object-cover"
+							/>
+						</div>
+					</div>
+					<div className="absolute left-130 top-1/2 -translate-x-1/3 -translate-y-1/2 hidden md:block z-0">
+						<div className="border-4 border-foreground shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] overflow-hidden bg-background">
+							<video
+								src="/hardedit.mp4"
+								autoPlay
+								loop
+								muted
+								playsInline
+								className="w-[400px] h-[400px] md:w-[350px] md:h-[450px] object-cover"
+							/>
+						</div>
+					</div>
+				{/* )} */}
+
+				<div className="space-y-6 relative z-10">
 					<motion.h1
 						className="text-[12vw] md:text-[8rem] font-bold leading-none tracking-tight text-balance lowercase"
-						initial={wiinFlicker.initial}
-						animate={wiinFlicker.animate}
-						transition={wiinFlicker.transition}
+						initial={hasAnimated ? false : wiinFlicker.initial}
+						animate={hasAnimated ? { opacity: 1, filter: 'brightness(1)', scale: 1 } : wiinFlicker.animate}
+						transition={hasAnimated ? { duration: 0 } : wiinFlicker.transition}
 					>
 						wiin
 					</motion.h1>
 					<motion.p
-						className="text-2xl md:text-4xl font-bold border-4 border-foreground bg-primary text-primary-foreground inline-block px-6 py-3 uppercase hover:bg-[#20B2AA] hover:text-foreground hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300"
-						initial={powerFlicker.initial}
-						animate={powerFlicker.animate}
-						transition={powerFlicker.transition}
+						className="text-2xl md:text-4xl font-bold border-4 border-foreground bg-primary text-primary-foreground shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] inline-block px-6 py-3 uppercase hover:bg-foreground hover:text-background hover:shadow-none transition-[background-color,color,box-shadow] duration-300"
+						initial={hasAnimated ? false : powerFlicker.initial}
+						animate={hasAnimated ? { opacity: 1, filter: 'brightness(1)', scale: 1 } : powerFlicker.animate}
+						transition={hasAnimated ? { duration: 0 } : powerFlicker.transition}
 					>
 						Power Your Day
 					</motion.p>
 				</div>
 
 				<motion.div
-					className="flex flex-col sm:flex-row gap-4"
-					initial={{ opacity: 0 }}
+					className="flex flex-col sm:flex-row gap-4 relative z-10"
+					initial={hasAnimated ? false : { opacity: 0 }}
 					animate={{ opacity: 1 }}
 					transition={{
-						duration: 1,
+						duration: hasAnimated ? 0 : 1,
 						ease: 'easeOut',
-						delay: 2.6,
+						delay: hasAnimated ? 0 : 2.6,
 					}}
 				>
-					<button className="border-4 border-foreground bg-primary text-primary-foreground px-8 py-4 text-lg font-bold hover:bg-[#20B2AA] hover:text-foreground hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
+					<button className="border-4 border-foreground bg-foreground text-background px-8 py-4 text-lg font-bold hover:bg-primary hover:text-primary-foreground hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
 						ORDER NOW
 					</button>
-					<button className="border-4 border-foreground bg-background text-foreground px-8 py-4 text-lg font-bold hover:border-[#20B2AA] hover:text-[#20B2AA] transition-all duration-300">
+					<button className="border-4 border-foreground bg-background text-foreground px-8 py-4 text-lg font-bold hover:border-primary hover:text-primary transition-all duration-300">
 						LEARN MORE
 					</button>
 				</motion.div>
 			</div>
 
 			{/* Right Section - Scrollable Content */}
-			<div className="min-h-screen flex items-center justify-end px-4 md:px-12 py-20">
-				<motion.div
-					className="space-y-6 max-w-md flex flex-col items-end"
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					transition={{
-						duration: 1,
-						ease: 'easeOut',
-						delay: 2.4,
-					}}
-				>
-					{/* Product Image */}
-					<div className="w-48 md:w-64">
-						<Image
-							src="/zynbox.webp"
-							alt="WIIN Nicotine Pouches"
-							width={400}
-							height={400}
-							className="w-full h-auto"
-							priority
-						/>
-					</div>
+			<div className="flex flex-col w-full md:ml-[50%] md:w-1/2 pr-4 md:pr-24">
+				{/* Product Image Section */}
+				<div className="min-h-[50vh] md:min-h-screen flex items-center justify-end px-4 md:px-12 pt-8 md:pt-20 pb-8 md:pb-20">
+					<motion.div
+						className="space-y-6 max-w-md flex flex-col items-end"
+						initial={hasAnimated ? false : { opacity: 0 }}
+						animate={{ opacity: 1 }}
+						transition={{
+							duration: hasAnimated ? 0 : 1,
+							ease: 'easeInOut',
+							delay: hasAnimated ? 0 : 2.4,
+						}}
+					>
+						{/* Product Image */}
+						<div className="w-48 md:w-64">
+							<Image
+								src="/zynbox.webp"
+								alt="WIIN Nicotine Pouches"
+								width={400}
+								height={400}
+								className="w-full h-auto"
+								priority
+							/>
+						</div>
 
-					{/* Text Content */}
-					<div className="space-y-2 text-right">
-						<p className="text-sm md:text-base leading-tight">ORAL WELLNESS NICOTINE POUCHES</p>
-						<p className="text-xs md:text-sm leading-tight text-muted-foreground">
-							THE FIRST NICOTINE POUCH THAT'S GOOD FOR YOUR GUMS.
-						</p>
+						{/* Text Content */}
+						<div className="space-y-2 text-center md:text-right">
+							<p className="text-sm md:text-base leading-tight">ORAL WELLNESS NICOTINE POUCHES</p>
+							<p className="text-xs md:text-sm leading-tight text-muted-foreground">
+								THE FIRST NICOTINE POUCH THAT'S GOOD FOR YOUR GUMS.
+							</p>
+						</div>
+					</motion.div>
+				</div>
+
+				{/* Mission Section - ABOUT + REPAIR/REFRESH/RECHARGE */}
+				<div ref={missionSectionRef} className="min-h-fit md:min-h-[200vh] flex items-center justify-end px-4 md:px-12 py-8">
+					<div ref={missionCardsRef} className="w-full md:w-[95%] flex flex-col md:flex-row gap-4 md:gap-6">
+						{/* About Card - Spans full height */}
+						<Link href="/about" ref={aboutCardRef} className="md:w-[50%]">
+							<div className="border-4 border-foreground p-6 md:p-8 bg-primary text-primary-foreground shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] h-full flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-300 hover:bg-foreground hover:shadow-none">
+								<h2 className="text-3xl md:text-5xl font-bold mb-4 uppercase">About</h2>
+								<p className="text-sm md:text-base leading-relaxed">
+									WIIN is revolutionizing the industry. Find out how →
+								</p>
+							</div>
+						</Link>
+
+						{/* Mission Cards Column */}
+						<div className="md:w-[50%] space-y-4">
+							<div ref={repairCardRef}>
+								<div className="border-4 border-foreground p-4 md:p-6 bg-card hover:border-primary transition-all duration-300 group">
+									<h2 className="text-2xl md:text-4xl font-bold mb-3 group-hover:text-primary transition-colors">
+										REPAIR
+									</h2>
+									<p className="text-sm md:text-base leading-relaxed">
+										REVERSE GUM DAMAGE CAUSED BY TRADITIONAL NICOTINE POUCHES
+									</p>
+								</div>
+							</div>
+
+							<div ref={refreshCardRef}>
+								<div className="border-4 border-foreground p-4 md:p-6 bg-card hover:border-primary transition-all duration-300 group">
+									<h2 className="text-2xl md:text-4xl font-bold mb-3 group-hover:text-primary transition-colors">
+										REFRESH
+									</h2>
+									<p className="text-sm md:text-base leading-relaxed">
+										CLEAN ENERGY WITHOUT THE GUILT OR GUM RECESSION
+									</p>
+								</div>
+							</div>
+
+							<div ref={rechargeCardRef}>
+								<div className="border-4 border-foreground p-4 md:p-6 bg-foreground text-background hover:bg-primary hover:text-primary-foreground hover:shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
+									<h2 className="text-2xl md:text-4xl font-bold mb-3">RECHARGE</h2>
+									<p className="text-sm md:text-base leading-relaxed">
+										POWER THROUGH YOUR DAY WITH WELLNESS-FOCUSED NICOTINE
+									</p>
+								</div>
+							</div>
+						</div>
 					</div>
-				</motion.div>
+				</div>
 			</div>
 		</section>
 	)
