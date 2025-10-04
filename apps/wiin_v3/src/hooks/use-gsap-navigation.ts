@@ -1,9 +1,6 @@
 import { useCallback } from 'react'
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
-
-gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)
+import { ScrollTrigger } from '@/lib/gsap-config'
+import { SECTION_OFFSETS, BREAKPOINTS, HEADER_OFFSET } from '@/lib/constants/animations'
 
 export function useGsapNavigation() {
 	const navigateToSection = useCallback((targetId: string) => {
@@ -11,7 +8,7 @@ export function useGsapNavigation() {
 		if (!target) return
 
 		// Check if we're on mobile by checking window width
-		const isMobile = window.innerWidth < 768
+		const isMobile = window.innerWidth < BREAKPOINTS.mobile
 
 		// On mobile, or if no takeover exists, use simple scrollIntoView
 		if (isMobile) {
@@ -31,11 +28,11 @@ export function useGsapNavigation() {
 				let sectionOffset = 0
 
 				if (targetId === '#method') {
-					sectionOffset = 193
+					sectionOffset = SECTION_OFFSETS.method
 				} else if (targetId === '#team') {
-					sectionOffset = 561
+					sectionOffset = SECTION_OFFSETS.team
 				} else if (targetId === '#impact') {
-					sectionOffset = 377
+					sectionOffset = SECTION_OFFSETS.impact
 				}
 
 				// Navigate to: takeover start + section offset
@@ -53,8 +50,7 @@ export function useGsapNavigation() {
 		// For non-GSAP sections (like mission), calculate scroll position with offset
 		const rect = target.getBoundingClientRect()
 		const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-		const headerOffset = 80 // Account for fixed header
-		const targetPosition = rect.top + scrollTop - headerOffset
+		const targetPosition = rect.top + scrollTop - HEADER_OFFSET
 
 		window.scrollTo({
 			top: targetPosition,

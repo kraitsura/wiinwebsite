@@ -1,11 +1,17 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import { useScrollAnimation } from '@/hooks/use-scroll-animation'
+import { IMPACT_ANIMATIONS } from '@/lib/constants/animations'
 
 export function ImpactSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-  const [scrollDirection, setScrollDirection] = useState<'down' | 'up'>('down')
+
+  // GSAP scroll animations for headlines
+  const headline1Ref = useScrollAnimation<HTMLHeadingElement>(IMPACT_ANIMATIONS.headline1)
+  const headline2Ref = useScrollAnimation<HTMLHeadingElement>(IMPACT_ANIMATIONS.headline2)
+  const headline3Ref = useScrollAnimation<HTMLHeadingElement>(IMPACT_ANIMATIONS.headline3)
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -13,9 +19,6 @@ export function ImpactSection() {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setIsVisible(true)
-            // Detect scroll direction based on intersection position
-            const direction = entry.boundingClientRect.top < window.innerHeight / 2 ? 'up' : 'down'
-            setScrollDirection(direction)
           }
         })
       },
@@ -35,9 +38,7 @@ export function ImpactSection() {
   return (
     <section
       ref={sectionRef}
-      className={`py-32 px-4 scroll-snap-align-start relative overflow-hidden ${
-        isVisible ? (scrollDirection === 'down' ? 'animate-in-down' : 'animate-in-up') : ''
-      }`}
+      className="py-32 px-4 scroll-snap-align-start relative overflow-hidden"
     >
       {/* Decorative grid overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none">
@@ -48,46 +49,16 @@ export function ImpactSection() {
       </div>
 
       <div className="max-w-5xl mx-auto relative">
-        {/* Main Headlines - Tighter Spacing */}
+        {/* Main Headlines - GSAP Scroll Animations */}
         <div className="text-4xl md:text-6xl font-bold leading-tight tracking-wide mb-16">
-          <h2 className="mb-2 headline-animate headline-1 overflow-hidden">
-            <span className="inline-block">
-              {isVisible && "REPAIR YOUR GUMS.".split('').map((char, i) => (
-                <span
-                  key={i}
-                  className="inline-block letter-reveal"
-                  style={{ animationDelay: `${i * 0.03}s` }}
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </span>
-              ))}
-            </span>
+          <h2 ref={headline1Ref} className="mb-2 headline-animate">
+            TAKE BACK YOUR YEARS.
           </h2>
-          <h2 className="mb-2 headline-animate headline-2 overflow-hidden">
-            <span className="inline-block">
-              {isVisible && "POWER YOUR DAY.".split('').map((char, i) => (
-                <span
-                  key={i}
-                  className="inline-block letter-reveal"
-                  style={{ animationDelay: `${(i + 17) * 0.03}s` }}
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </span>
-              ))}
-            </span>
+          <h2 ref={headline2Ref} className="mb-2 headline-animate">
+            FIGHT INFLAMMATION.
           </h2>
-          <h2 className="mb-0 headline-animate headline-3">
-            <span className="inline-block">
-              {isVisible && "NO COMPROMISE.".split('').map((char, i) => (
-                <span
-                  key={i}
-                  className="inline-block letter-reveal letter-reveal-final"
-                  style={{ animationDelay: `${(i + 32) * 0.03}s` }}
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </span>
-              ))}
-            </span>
+          <h2 ref={headline3Ref} className="mb-0 headline-animate">
+            NEVER COMPROMISE.
           </h2>
         </div>
 
@@ -115,53 +86,6 @@ export function ImpactSection() {
       </div>
 
       <style jsx>{`
-        /* Letter-by-letter reveal animation */
-        @keyframes letterReveal {
-          0% {
-            opacity: 0;
-            transform: translateY(20px) scale(0.8);
-            filter: blur(10px);
-          }
-          50% {
-            filter: blur(2px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            filter: blur(0);
-          }
-        }
-
-        @keyframes letterRevealFinal {
-          0% {
-            opacity: 0;
-            transform: translateY(20px) scale(0.8);
-            filter: blur(10px);
-          }
-          40% {
-            filter: blur(2px);
-          }
-          70% {
-            opacity: 1;
-            transform: translateY(0) scale(1.05);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            filter: blur(0);
-          }
-        }
-
-        .letter-reveal {
-          animation: letterReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          opacity: 0;
-        }
-
-        .letter-reveal-final {
-          animation: letterRevealFinal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-          opacity: 0;
-        }
-
         /* Border reveal animation - dots appearing sequentially */
         @keyframes dotsAppear {
           0% {
@@ -275,37 +199,6 @@ export function ImpactSection() {
 
         .border-section.visible .bracket-animate {
           animation: bracketPop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
-        }
-
-        /* Section entrance animations */
-        @keyframes fadeInDown {
-          0% {
-            opacity: 0;
-            transform: translateY(-30px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes fadeInUp {
-          0% {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        .animate-in-down {
-          animation: fadeInDown 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .animate-in-up {
-          animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         /* Headline hover effects */

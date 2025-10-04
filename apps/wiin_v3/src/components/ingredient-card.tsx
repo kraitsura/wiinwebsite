@@ -1,8 +1,8 @@
-"use client"
+'use client'
 
-import { useState, useRef } from "react"
-import { createPortal } from "react-dom"
-import { useIsMobile } from "@/components/ui/use-mobile"
+import { useState, useRef } from 'react'
+import { createPortal } from 'react-dom'
+import { useIsMobile } from '@/hooks/use-mobile'
 
 interface IngredientCardProps {
   title: string

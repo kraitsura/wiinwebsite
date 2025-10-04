@@ -1,3 +1,4 @@
+import { Contact } from '@/components/contact'
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
 import { Hero } from '@/components/hero'
@@ -13,6 +14,7 @@ export default function Page() {
 			<Mission />
 			<Method />
 			<Team />
+			<Contact />
 			<Footer />
 		</main>
 	)

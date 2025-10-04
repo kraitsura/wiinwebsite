@@ -1,7 +1,10 @@
-'use client'
+"use client"
 
-import { useEffect, useRef } from 'react'
-import { gsap } from '@/lib/gsap-config'
+import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 export function PowerYourDayStrips() {
   const containerRefs = useRef<(HTMLDivElement | null)[]>([])
@@ -60,7 +63,7 @@ export function PowerYourDayStrips() {
   const repeatText = "POWER YOUR DAY "
 
   return (
-    <section className="py-8 md:py-16 overflow-hidden">
+    <section className="py-16 overflow-hidden">
       <div className="space-y-0">
         {strips.map((strip, index) => (
           <div key={index} className="overflow-hidden -my-2">

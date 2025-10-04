@@ -6,7 +6,7 @@ export function Team() {
 	]
 
 	return (
-		<section className="min-h-screen flex items-center justify-center px-4 py-20 border-b-4 border-foreground">
+		<section className="min-h-screen flex items-center justify-center px-4 py-20">
 			<div className="max-w-5xl w-full space-y-12">
 				<h2 className="text-5xl md:text-7xl font-bold">THE TEAM</h2>
 
@@ -22,12 +22,6 @@ export function Team() {
 					))}
 				</div>
 
-				<div className="border-4 border-foreground p-12 bg-card text-center space-y-6">
-					<p className="text-2xl md:text-3xl font-bold">READY TO POWER YOUR DAY?</p>
-					<button className="border-4 border-foreground bg-primary text-primary-foreground px-12 py-6 text-xl font-bold hover:bg-foreground hover:text-background transition-colors">
-						GET WIIN NOW
-					</button>
-				</div>
 			</div>
 		</section>
 	)

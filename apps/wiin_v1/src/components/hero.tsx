@@ -65,9 +65,9 @@ export function Hero() {
 			opacity: [0, 0.08, 0, 0.25, 0, 0.4, 0.22, 0.6, 0.45, 0.82, 0.88, 1],
 			filter: [
 				'brightness(0.3)',
-				'brightness(1.9)',
+				'brightness(1.2)',
 				'brightness(0.6)',
-				'brightness(2.0)', // Intensity spike
+				'brightness(1.0)', // Intensity spike
 				'brightness(0.5)',
 				'brightness(1.6)',
 				'brightness(0.95)',
