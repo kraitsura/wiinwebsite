@@ -57,46 +57,19 @@ export const WIINING_WAY_ANIMATIONS = {
 	title: {
 		y: 100,
 		opacity: 0,
-		start: '20% 90%',
-		end: '50% 90%',
+		start: '80% 90%',
+		end: '90% 90%',
 		scrub: 2,
 		delay: 0.3,
 	},
 	cards: {
 		y: 100,
 		opacity: 0,
-		start: '30% 90%',
-		end: '70% 90%',
+		start: '80% 90%',
+		end: '100% 90%',
 		scrub: 2,
 		delay: 0.5,
-		stagger: 0.2,
-	},
-} as const
-
-/**
- * Impact section scroll animation configurations
- */
-export const IMPACT_ANIMATIONS = {
-	headline1: {
-		y: 80,
-		opacity: 0,
-		start: '20% 90%',
-		end: '60% 90%',
-		scrub: 2,
-	},
-	headline2: {
-		y: 80,
-		opacity: 0,
-		start: '25% 90%',
-		end: '65% 90%',
-		scrub: 2,
-	},
-	headline3: {
-		y: 80,
-		opacity: 0,
-		start: '30% 90%',
-		end: '70% 90%',
-		scrub: 2,
+		stagger: 0.3,
 	},
 } as const
 

@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button"
 
 export function CTASection() {
   return (
-    <section className="py-24 px-4 bg-primary text-primary-foreground scroll-snap-align-start">
+    <section className="py-24 px-4 bg-primary text-primary-foreground">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-4xl md:text-6xl font-bold mb-8 tracking-wider">
-          READY TO WIIN?
+          READY TO WiiN?
         </h2>
         <p className="text-xl mb-12 uppercase tracking-widest">
           POWER YOUR DAY THE HEALTHY WAY

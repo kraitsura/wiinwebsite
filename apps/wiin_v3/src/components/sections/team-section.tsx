@@ -10,7 +10,7 @@ export function TeamSection() {
   }
 
   return (
-    <section id="team" className="py-12 md:py-24 px-4 scroll-snap-align-start min-h-screen">
+    <section id="team" className="py-12 md:py-24 px-4 min-h-screen">
       <div className="max-w-4xl mx-auto text-center">
         <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-16 tracking-wider">
           THE TEAM

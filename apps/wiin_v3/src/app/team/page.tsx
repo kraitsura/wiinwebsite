@@ -1,6 +1,6 @@
 "use client"
 
-import { BackButton } from "@/components/back-button"
+import { BackButton } from "@/components/common/back-button"
 import { useEffect } from "react"
 
 export default function TeamPage() {

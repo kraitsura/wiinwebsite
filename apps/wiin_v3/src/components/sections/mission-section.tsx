@@ -1,11 +1,11 @@
 "use client"
 
-interface WiiningWaySectionProps {
+interface MissionSectionProps {
   titleRef: React.RefObject<HTMLHeadingElement>
   cardsRef: React.RefObject<HTMLDivElement>
 }
 
-export function WiiningWaySection({ titleRef, cardsRef }: WiiningWaySectionProps) {
+export function MissionSection({ titleRef, cardsRef }: MissionSectionProps) {
   return (
     <section id="mission" className="py-12 md:py-24 px-4">
       <div className="max-w-4xl mx-auto text-center">

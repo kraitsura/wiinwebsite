@@ -1,4 +1,4 @@
-import { BackButton } from "@/components/back-button"
+import { BackButton } from "@/components/common/back-button"
 
 export default function ShippingPage() {
   return (

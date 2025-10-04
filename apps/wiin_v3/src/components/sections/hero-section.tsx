@@ -25,9 +25,9 @@ export function HeroSection({ titleRef, sloganRef, subtitleRef, buttonsRef }: He
         <div ref={buttonsRef} className="flex flex-col md:flex-row gap-4 justify-center items-center">
           <Button
             size="lg"
-            className="bg-primary text-primary-foreground border-2 border-primary hover:bg-transparent hover:text-primary text-sm uppercase tracking-widest px-8 py-4"
+            className="bg-primary text-primary-foreground border-2 border-primary hover:bg-transparent hover:text-primary text-sm tracking-widest px-8 py-4"
           >
-            GET WIIN
+            GET WiiN
           </Button>
           <Button
             variant="outline"

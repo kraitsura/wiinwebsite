@@ -1,10 +1,38 @@
 "use client"
 
-import { IngredientCard } from "./ingredient-card"
+import { useEffect, useRef, useState } from "react"
+import { IngredientCard } from "@/components/features/ingredient-card"
 
 export function MethodSection() {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const [isInView, setIsInView] = useState(false)
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
+
+  useEffect(() => {
+    // Detect if device supports touch
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+
+    // Intersection Observer to detect when card is in viewport
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting)
+      },
+      { threshold: 0.5 } // Trigger when 50% of card is visible
+    )
+
+    if (cardRef.current) {
+      observer.observe(cardRef.current)
+    }
+
+    return () => {
+      if (cardRef.current) {
+        observer.unobserve(cardRef.current)
+      }
+    }
+  }, [])
+
   return (
-    <section id="method" className="py-12 md:py-24 px-4 bg-muted min-h-screen scroll-snap-align-start scroll-snap-stop-always">
+    <section id="method" className="py-12 md:py-24 px-4 bg-muted min-h-screen">
       <div className="max-w-6xl mx-auto">
         <h2 className="text-4xl md:text-6xl font-bold mb-8 md:mb-16 text-center tracking-wider">
           THE METHOD
@@ -30,7 +58,14 @@ export function MethodSection() {
               />
             </div>
           </div>
-          <div className="relative border-4 border-foreground p-6 md:p-12 bg-background group hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
+          <div
+            ref={cardRef}
+            className={`relative border-4 border-foreground p-6 md:p-12 bg-background group transition-all duration-300 ${
+              isTouchDevice && isInView
+                ? 'shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]'
+                : 'md:hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]'
+            }`}
+          >
             {/* Corner accent mark */}
             <div className="absolute top-4 left-4 w-3 h-3 border-2 border-primary bg-primary" />
 

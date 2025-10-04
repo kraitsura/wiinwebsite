@@ -1,15 +1,15 @@
 'use client'
 
 import { useRef } from 'react'
-import { Footer } from '@/components/footer'
-import { Header } from '@/components/header'
-import { HeroSection } from '@/components/hero-section'
-import { WiiningWaySection } from '@/components/wiining-way-section'
-import { PowerYourDayStrips } from '@/components/power-your-day-strips'
-import { MethodSection } from '@/components/method-section'
-import { ImpactSection } from '@/components/impact-section'
-import { TeamSection } from '@/components/team-section'
-import { CTASection } from '@/components/cta-section'
+import { Footer } from '@/components/layout/footer'
+import { Header } from '@/components/layout/header'
+import { HeroSection } from '@/components/sections/hero-section'
+import { MissionSection } from '@/components/sections/mission-section'
+import { PowerYourDayStrips } from '@/components/sections/power-your-day-strips'
+import { MethodSection } from '@/components/sections/method-section'
+import { ImpactSection } from '@/components/sections/impact-section'
+import { TeamSection } from '@/components/sections/team-section'
+import { CTASection } from '@/components/sections/cta-section'
 import { useScrollAnimation } from '@/hooks/use-scroll-animation'
 import { useIsMobile } from '@/hooks/use-mobile'
 import { useScrollToTop } from '@/hooks/use-scroll-to-top'
@@ -52,7 +52,7 @@ export default function Page() {
 			/>
 
 			{/* Wiining Way section (THE WIINING WAY - Benefits/Ingredients/How It Works) */}
-			<WiiningWaySection titleRef={wiiningWayTitleRef as React.RefObject<HTMLHeadingElement>} cardsRef={wiiningWayCardsRef as React.RefObject<HTMLDivElement>} />
+			<MissionSection titleRef={wiiningWayTitleRef as React.RefObject<HTMLHeadingElement>} cardsRef={wiiningWayCardsRef as React.RefObject<HTMLDivElement>} />
 
 			{/* Scroll Takeover Animation */}
 			<div ref={triggerRef} className="relative">

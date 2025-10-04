@@ -43,8 +43,9 @@ export function Header() {
 						initial={{ y: '-100%' }}
 						animate={{ y: 0 }}
 						exit={{ y: '-100%' }}
-						transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+						transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
 						className="fixed inset-0 z-40 flex items-center justify-start bg-primary px-4 md:px-8"
+						style={{ willChange: 'transform' }}
 					>
 						<div className="flex w-full max-w-7xl mx-auto">
 							<h2 className="text-6xl md:text-8xl font-black text-white w-[30%] flex-shrink-0">
