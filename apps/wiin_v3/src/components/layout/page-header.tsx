@@ -48,11 +48,11 @@ export function PageHeader() {
 									key={link.href}
 									href={link.href}
 									className={`text-xs sm:text-sm font-bold uppercase tracking-wider px-2 py-1 md:px-4 md:py-2 rounded-md border ${
-										!isMenuOpen
-											? isActive
-												? 'bg-primary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-transparent'
-												: 'backdrop-blur-md bg-white/20 border-white/30 hover:bg-primary hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] [transition:backdrop-filter_300ms_400ms,background-color_300ms_400ms,border-color_300ms_400ms,box-shadow_200ms_0ms]'
-											: 'border-transparent'
+										isActive
+											? 'bg-primary shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-transparent'
+											: !isMenuOpen
+												? 'backdrop-blur-md bg-white/20 border-white/30 hover:bg-primary hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] [transition:backdrop-filter_300ms_400ms,background-color_300ms_400ms,border-color_300ms_400ms,box-shadow_200ms_0ms]'
+												: 'border-transparent'
 									}`}
 								>
 									{link.label}
@@ -101,8 +101,8 @@ export function PageHeader() {
 											<Link
 												key={link.href}
 												href={link.href}
-												className={`block text-2xl md:text-4xl font-light text-white hover:opacity-70 transition-opacity text-center ${
-													isActive ? 'bg-black/30 py-2 rounded-md' : ''
+												className={`block text-2xl md:text-4xl font-light text-white hover:opacity-70 transition-all text-center py-2 rounded-md ${
+													isActive ? 'shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : ''
 												}`}
 												onClick={handleNavClick}
 											>
@@ -119,8 +119,8 @@ export function PageHeader() {
 											<Link
 												key={link.href}
 												href={link.href}
-												className={`block text-2xl md:text-4xl font-light text-white hover:opacity-70 transition-opacity text-center ${
-													isActive ? 'bg-black/30 py-2 rounded-md' : ''
+												className={`block text-2xl md:text-4xl font-light text-white hover:opacity-70 transition-all text-center py-2 rounded-md ${
+													isActive ? 'shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : ''
 												}`}
 												onClick={handleNavClick}
 											>
