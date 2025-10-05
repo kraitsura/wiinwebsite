@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
 
 export function ImpactSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
@@ -129,8 +130,8 @@ export function ImpactSection() {
         </div>
 
         {/* Bottom Section */}
-        <div className={`pt-12 mt-12 border-section ${isVisible ? (isReverse ? 'visible-reverse' : 'visible') : ''}`}>
-          <div className="grid md:grid-cols-2 gap-12">
+        <div className={`pt-12 mt-12 border-section relative ${isVisible ? (isReverse ? 'visible-reverse' : 'visible') : ''}`}>
+          <div className="grid md:grid-cols-2 gap-12 mb-8">
             <div className="content-slide-left">
               <div className="wellness-text-wrapper relative">
                 <h3 className="text-2xl font-bold mb-4 uppercase tracking-wide relative pl-10">
@@ -144,9 +145,18 @@ export function ImpactSection() {
             <div className="content-slide-right">
               <p className="text-sm uppercase tracking-wide leading-relaxed text-muted-foreground">
                 TRADITIONAL NICOTINE POUCHES DAMAGE YOUR GUMS. <br />
-                WIIN REPAIRS THEM. IT'S THAT SIMPLE.
+                WiiN REPAIRS THEM. IT'S THAT SIMPLE.
               </p>
             </div>
+          </div>
+          <div className="flex justify-end mt-4">
+            <Link
+              href="/benefits"
+              className="learn-more-btn text-[10px] uppercase tracking-widest font-medium hover:opacity-100 transition-opacity duration-300 flex items-center gap-1 group"
+            >
+              <span>Learn More</span>
+              <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+            </Link>
           </div>
         </div>
       </div>
@@ -479,6 +489,37 @@ export function ImpactSection() {
 
         .headline-animate:hover {
           transform: translateX(10px);
+        }
+
+        /* Learn more button animation */
+        @keyframes fadeInButton {
+          0% {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          100% {
+            opacity: 0.6;
+            transform: translateY(0);
+          }
+        }
+
+        .border-section.visible .learn-more-btn {
+          animation: fadeInButton 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+        }
+
+        @keyframes fadeOutButton {
+          0% {
+            opacity: 0.6;
+            transform: translateY(0);
+          }
+          100% {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+        }
+
+        .border-section.visible-reverse .learn-more-btn {
+          animation: fadeOutButton 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0s forwards;
         }
       `}</style>
     </section>

@@ -1,6 +1,7 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export function CTASection() {
   return (
@@ -14,11 +15,12 @@ export function CTASection() {
         </p>
         <div>
           <Button
+          asChild
             size="lg"
             variant="outline"
             className="border-2 border-primary-foreground bg-transparent text-primary-foreground hover:bg-primary-foreground hover:text-primary text-sm uppercase tracking-widest px-12 py-4"
           >
-            ORDER NOW
+            <Link href="/order">ORDER NOW</Link>
           </Button>
         </div>
       </div>

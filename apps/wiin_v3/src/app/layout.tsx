@@ -13,7 +13,7 @@ const bebasNeue = Bebas_Neue({
 })
 
 export const metadata: Metadata = {
-	title: 'WIIN - Power Your Day',
+	title: 'WiiN - Power Your Day',
 	description:
 		'Wellness oral nicotine pouches that repair, refresh, and recharge. Healthy nicotine pouches that are good for your gums.',
 	generator: 'v0.app',

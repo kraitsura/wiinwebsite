@@ -1,28 +1,119 @@
-import { BackButton } from "@/components/common/back-button"
+"use client"
+
+import { PageHeader } from "@/components/layout/page-header"
+import { ReadyToSwitchCTA } from "@/components/sections/ready-to-wiin-cta"
+import { motion, useInView } from "framer-motion"
+import { useRef } from "react"
+
+// Animation variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 60 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1] as const
+    }
+  }
+}
+
+const fadeInScale = {
+  hidden: { opacity: 0, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1] as const
+    }
+  }
+}
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1
+    }
+  }
+}
+
+const slideInLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1] as const
+    }
+  }
+}
+
+const slideInRight = {
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1] as const
+    }
+  }
+}
 
 export default function AboutPage() {
+  const problemRef = useRef(null)
+  const problemInView = useInView(problemRef, { once: true, margin: "-100px" })
+
+  const storyRef = useRef(null)
+  const storyInView = useInView(storyRef, { once: true, margin: "-100px" })
+
+  const differentRef = useRef(null)
+  const differentInView = useInView(differentRef, { once: true, margin: "-100px" })
+
+  const principlesRef = useRef(null)
+  const principlesInView = useInView(principlesRef, { once: true, margin: "-100px" })
+
   return (
-    <div className="min-h-screen p-4 md:p-8">
-      <div className="max-w-6xl mx-auto">
-        <BackButton />
+    <div className="min-h-screen">
+      <PageHeader />
+      <div className="px-4 md:px-8 pb-4 md:pb-8 pt-32 max-w-6xl mx-auto">
 
         {/* Hero Statement */}
-        <div className="mt-12 mb-20">
-          <h1 className="text-5xl md:text-7xl font-bold mb-8 uppercase tracking-tight leading-none">
-            About WIIN
-          </h1>
+        <motion.div
+          className="mt-12 mb-20"
+          initial="hidden"
+          animate="visible"
+          variants={fadeInScale}
+        >
           <div className="border-4 border-foreground bg-primary text-primary-foreground p-8 md:p-12 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">
             <p className="text-xl md:text-3xl font-bold leading-relaxed">
               WE'RE NOT JUST ANOTHER NICOTINE POUCH. WE'RE THE FIRST ONE THAT ACTUALLY GIVES A DAMN ABOUT YOUR ORAL HEALTH.
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* The Problem */}
-        <div className="mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 uppercase">The Problem</h2>
+        <div ref={problemRef} className="mb-20">
+          <motion.h2
+            className="text-3xl md:text-5xl font-bold mb-6 uppercase"
+            initial={{ opacity: 0, y: 30 }}
+            animate={problemInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+          >
+            The Problem
+          </motion.h2>
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="border-4 border-foreground p-6 bg-background">
+            <motion.div
+              className="border-4 border-foreground p-6 bg-background"
+              initial="hidden"
+              animate={problemInView ? "visible" : "hidden"}
+              variants={slideInLeft}
+            >
               <h3 className="text-xl font-bold mb-4 uppercase">Traditional Pouches</h3>
               <ul className="space-y-3 text-sm md:text-base font-mono">
                 <li className="flex items-start">
@@ -42,9 +133,14 @@ export default function AboutPage() {
                   <span>Use cheap fillers</span>
                 </li>
               </ul>
-            </div>
-            <div className="border-4 border-foreground p-6 bg-foreground text-background">
-              <h3 className="text-xl font-bold mb-4 uppercase">WIIN Pouches</h3>
+            </motion.div>
+            <motion.div
+              className="border-4 border-foreground p-6 bg-foreground text-background"
+              initial="hidden"
+              animate={problemInView ? "visible" : "hidden"}
+              variants={slideInRight}
+            >
+              <h3 className="text-xl font-bold mb-4 uppercase">WiiN Pouches</h3>
               <ul className="space-y-3 text-sm md:text-base font-mono">
                 <li className="flex items-start">
                   <span className="mr-3 font-bold">✓</span>
@@ -63,68 +159,121 @@ export default function AboutPage() {
                   <span>Premium quality</span>
                 </li>
               </ul>
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* Our Story */}
-        <div className="mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 uppercase">Our Story</h2>
-          <div className="border-4 border-foreground p-8 md:p-12 bg-card">
-            <div className="space-y-6 text-base md:text-lg font-mono leading-relaxed">
+        <div ref={storyRef} className="mb-20">
+          <motion.h2
+            className="text-3xl md:text-5xl font-bold mb-12 uppercase"
+            initial={{ opacity: 0, y: 30 }}
+            animate={storyInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+          >
+            Our Story
+          </motion.h2>
+          <div className="relative">
+            {/* Accent line */}
+            <motion.div
+              className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-primary/60 to-transparent"
+              initial={{ scaleY: 0 }}
+              animate={storyInView ? { scaleY: 1 } : {}}
+              transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] as const }}
+              style={{ transformOrigin: "top" }}
+            />
+
+            <motion.div
+              className="pl-8 md:pl-12 space-y-8 text-base md:text-lg leading-relaxed max-w-4xl"
+              initial={{ opacity: 0, y: 40 }}
+              animate={storyInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] as const }}
+            >
               <p>
-                WIIN was born from a simple realization: the nicotine pouch industry had a gaping hole.
-                Everyone was racing to make stronger pouches, but no one was asking the obvious question—
-                what's happening to people's mouths?
+                WiiN was born from a <strong className="text-foreground font-bold">simple realization</strong>: the nicotine pouch industry had a <em className="text-primary not-italic font-semibold">gaping hole</em>.
+                Everyone was racing to make stronger pouches, but <strong className="text-foreground font-bold">no one was asking the obvious question</strong>—
+                <em className="italic text-muted-foreground">what's happening to people's mouths?</em>
               </p>
               <p>
-                We saw users dealing with gum recession, tissue damage, and oral health issues.
+                We saw users dealing with <span className="text-destructive font-semibold">gum recession, tissue damage, and oral health issues</span>.
                 The very product designed to be a cleaner alternative was causing its own set of problems.
               </p>
               <p>
-                So we did something radical: we created a nicotine pouch that actually supports oral health.
-                Not just "less harmful," but actively beneficial. We loaded it with ingredients that repair,
-                refresh, and protect your gums while delivering the clean energy you need.
+                So we did something <strong className="text-primary font-bold">radical</strong>: we created a nicotine pouch that <strong className="text-foreground font-bold">actually supports oral health</strong>.
+                Not just <span className="text-muted-foreground italic">"less harmful,"</span> but <strong className="text-primary font-bold">actively beneficial</strong>. We loaded it with ingredients that <span className="font-semibold">repair, refresh, and protect</span> your gums while delivering the clean energy you need.
               </p>
-              <p className="font-bold">
+              <p className="text-xl md:text-2xl font-bold pt-4 border-t border-primary/30">
                 Because why should you have to choose between nicotine and oral health?
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
 
         {/* What Makes Us Different */}
-        <div className="mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 uppercase">What Makes Us Different</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="border-4 border-foreground p-6 bg-background hover:bg-primary hover:text-primary-foreground transition-all duration-300 group">
+        <div ref={differentRef} className="mb-20">
+          <motion.h2
+            className="text-3xl md:text-5xl font-bold mb-6 uppercase"
+            initial={{ opacity: 0, y: 30 }}
+            animate={differentInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+          >
+            What Makes Us Different
+          </motion.h2>
+          <motion.div
+            className="grid md:grid-cols-3 gap-6"
+            initial="hidden"
+            animate={differentInView ? "visible" : "hidden"}
+            variants={staggerContainer}
+          >
+            <motion.div
+              className="border-4 border-foreground p-6 bg-background hover:bg-primary hover:text-primary-foreground transition-all duration-300 group"
+              variants={fadeInUp}
+            >
               <div className="text-4xl font-bold mb-4 group-hover:scale-110 transition-transform">01</div>
               <h3 className="text-xl font-bold mb-3 uppercase">Oral Health First</h3>
               <p className="text-sm font-mono">
                 Every ingredient is chosen to support your gums and oral tissue, not just deliver nicotine.
               </p>
-            </div>
-            <div className="border-4 border-foreground p-6 bg-background hover:bg-primary hover:text-primary-foreground transition-all duration-300 group">
+            </motion.div>
+            <motion.div
+              className="border-4 border-foreground p-6 bg-background hover:bg-primary hover:text-primary-foreground transition-all duration-300 group"
+              variants={fadeInUp}
+            >
               <div className="text-4xl font-bold mb-4 group-hover:scale-110 transition-transform">02</div>
               <h3 className="text-xl font-bold mb-3 uppercase">Science-Backed</h3>
               <p className="text-sm font-mono">
                 We use clinically proven ingredients like CoQ10 and hyaluronic acid to actively repair damage.
               </p>
-            </div>
-            <div className="border-4 border-foreground p-6 bg-background hover:bg-primary hover:text-primary-foreground transition-all duration-300 group">
+            </motion.div>
+            <motion.div
+              className="border-4 border-foreground p-6 bg-background hover:bg-primary hover:text-primary-foreground transition-all duration-300 group"
+              variants={fadeInUp}
+            >
               <div className="text-4xl font-bold mb-4 group-hover:scale-110 transition-transform">03</div>
               <h3 className="text-xl font-bold mb-3 uppercase">No Compromise</h3>
               <p className="text-sm font-mono">
                 Premium nicotine satisfaction without sacrificing your oral health. You get both.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
 
         {/* Our Principles */}
-        <div className="mb-20">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 uppercase">Our Principles</h2>
-          <div className="space-y-4">
+        <div ref={principlesRef} className="mb-20">
+          <motion.h2
+            className="text-3xl md:text-5xl font-bold mb-6 uppercase"
+            initial={{ opacity: 0, y: 30 }}
+            animate={principlesInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
+          >
+            Our Principles
+          </motion.h2>
+          <motion.div
+            className="space-y-8"
+            initial="hidden"
+            animate={principlesInView ? "visible" : "hidden"}
+            variants={staggerContainer}
+          >
             {[
               {
                 title: "TRANSPARENCY",
@@ -143,27 +292,22 @@ export default function AboutPage() {
                 desc: "We believe companies should care about long-term user health, not just short-term profits."
               }
             ].map((principle, index) => (
-              <div key={index} className="border-4 border-foreground p-6 bg-card hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] transition-all duration-300">
-                <h3 className="text-xl md:text-2xl font-bold mb-2">{principle.title}</h3>
-                <p className="text-sm md:text-base font-mono text-muted-foreground">{principle.desc}</p>
-              </div>
+              <motion.div
+                key={index}
+                className="space-y-2"
+                variants={fadeInUp}
+              >
+                <h3 className="text-xl md:text-2xl font-bold tracking-tight text-primary">{principle.title}</h3>
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-3xl border-l-2 border-primary/30 pl-4">{principle.desc}</p>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
 
-        {/* Final CTA */}
-        <div className="mb-12">
-          <div className="border-4 border-foreground bg-foreground text-background p-8 md:p-12 shadow-[12px_12px_0px_0px_hsl(var(--primary))]">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4 uppercase">Ready to Make the Switch?</h2>
-            <p className="text-lg md:text-xl mb-6 font-mono">
-              Join the movement toward healthier nicotine pouches.
-            </p>
-            <button className="border-4 border-background bg-primary text-primary-foreground px-8 py-4 text-lg font-bold hover:bg-background hover:text-foreground transition-all duration-300">
-              ORDER NOW
-            </button>
-          </div>
-        </div>
       </div>
+
+      {/* Final CTA */}
+      <ReadyToSwitchCTA />
     </div>
   )
 }

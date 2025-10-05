@@ -39,7 +39,7 @@ export function Hero({ heroLeftRef, missionSectionRef, missionCardsRef, heroFixe
 	// Accelerating phase (0.65→1): Rapid succession - 35%
 	const flickerTimes = [0, 0.1, 0.15, 0.35, 0.4, 0.6, 0.65, 0.75, 0.83, 0.9, 0.96, 1]
 
-	// "wiin" flicker animation with triple property coordination
+	// "WiiN" flicker animation with triple property coordination
 	const wiinFlicker = {
 		initial: {
 			opacity: 0,
@@ -129,7 +129,7 @@ export function Hero({ heroLeftRef, missionSectionRef, missionCardsRef, heroFixe
 
 	return (
 		<section id="hero" className="relative">
-			{/* Pinned Left Section - WIIN, Power Your Day, Buttons */}
+			{/* Pinned Left Section - WiiN, Power Your Day, Buttons */}
 			<div
 				ref={heroLeftRef}
 				className={`${
@@ -169,12 +169,12 @@ export function Hero({ heroLeftRef, missionSectionRef, missionCardsRef, heroFixe
 
 				<div className="space-y-6 relative z-10">
 					<motion.h1
-						className="text-[12vw] md:text-[8rem] font-bold leading-none tracking-tight text-balance lowercase"
+						className="text-[12vw] md:text-[8rem] font-bold leading-none tracking-tight text-balance"
 						initial={hasAnimated ? false : wiinFlicker.initial}
 						animate={hasAnimated ? { opacity: 1, filter: 'brightness(1)', scale: 1 } : wiinFlicker.animate}
 						transition={hasAnimated ? { duration: 0 } : wiinFlicker.transition}
 					>
-						wiin
+						WiiN
 					</motion.h1>
 					<motion.p
 						className="text-2xl md:text-4xl font-bold border-4 border-foreground bg-primary text-primary-foreground shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] inline-block px-6 py-3 uppercase hover:bg-foreground hover:text-background hover:shadow-none transition-[background-color,color,box-shadow] duration-300"
@@ -223,7 +223,7 @@ export function Hero({ heroLeftRef, missionSectionRef, missionCardsRef, heroFixe
 						<div className="w-48 md:w-64">
 							<Image
 								src="/zynbox.webp"
-								alt="WIIN Nicotine Pouches"
+								alt="WiiN Nicotine Pouches"
 								width={400}
 								height={400}
 								className="w-full h-auto"
@@ -249,7 +249,7 @@ export function Hero({ heroLeftRef, missionSectionRef, missionCardsRef, heroFixe
 							<div className="border-4 border-foreground p-6 md:p-8 bg-primary text-primary-foreground shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] h-full flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-300 hover:bg-foreground hover:shadow-none">
 								<h2 className="text-3xl md:text-5xl font-bold mb-4 uppercase">About</h2>
 								<p className="text-sm md:text-base leading-relaxed">
-									WIIN is revolutionizing the industry. Find out how →
+									WiiN is revolutionizing the industry. Find out how →
 								</p>
 							</div>
 						</Link>

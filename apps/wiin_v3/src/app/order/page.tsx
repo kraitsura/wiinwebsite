@@ -1,6 +1,6 @@
 import { PageHeader } from "@/components/layout/page-header"
 
-export default function ReturnsPage() {
+export default function OrderPage() {
   return (
     <div className="min-h-screen">
       <PageHeader />
@@ -8,10 +8,10 @@ export default function ReturnsPage() {
 
         <div className="mt-12">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 uppercase tracking-wider">
-            Returns
+            Order
           </h1>
           <p className="text-lg text-muted-foreground uppercase tracking-wide max-w-3xl">
-            Information about our return and refund policy.
+            Get your WiiN pouches delivered to your door.
           </p>
 
           <div className="mt-12 space-y-6">

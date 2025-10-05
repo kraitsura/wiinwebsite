@@ -43,7 +43,7 @@ export function Header() {
 						initial={{ y: '-100%' }}
 						animate={{ y: 0 }}
 						exit={{ y: '-100%' }}
-						transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+						transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] as const }}
 						className="fixed inset-0 z-40 flex items-center justify-start bg-primary px-4 md:px-8"
 						style={{ willChange: 'transform' }}
 					>
@@ -72,6 +72,13 @@ export function Header() {
 									onClick={(e) => handleNavClick(e, '#team')}
 								>
 									TEAM
+								</a>
+								<a
+									href="/contact"
+									className="block text-3xl md:text-5xl font-light text-white hover:opacity-70 transition-opacity"
+									onClick={() => setIsMenuOpen(false)}
+								>
+									CONTACT US
 								</a>
 							</nav>
 						</div>

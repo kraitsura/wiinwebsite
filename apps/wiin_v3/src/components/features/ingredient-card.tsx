@@ -2,15 +2,19 @@
 
 import { useState, useRef } from 'react'
 import { createPortal } from 'react-dom'
+import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useIsMobile } from '@/hooks/use-mobile'
 
 interface IngredientCardProps {
   title: string
   subtitle: string
   description: string
+  id: string
 }
 
-export function IngredientCard({ title, subtitle, description }: IngredientCardProps) {
+export function IngredientCard({ title, subtitle, description, id }: IngredientCardProps) {
+  const router = useRouter()
   const isMobile = useIsMobile()
   const [isHovered, setIsHovered] = useState(false)
   const [dialogPosition, setDialogPosition] = useState({ x: 0, y: 0 })
@@ -78,6 +82,8 @@ export function IngredientCard({ title, subtitle, description }: IngredientCardP
   const handleClick = () => {
     if (isMobile) {
       setIsHovered(!isHovered)
+    } else {
+      router.push(`/ingredients#${id}`)
     }
   }
 
@@ -145,7 +151,14 @@ export function IngredientCard({ title, subtitle, description }: IngredientCardP
                         </svg>
                       </button>
                     </div>
-                    <p className="text-sm leading-relaxed opacity-95">{description}</p>
+                    <p className="text-sm leading-relaxed opacity-95 mb-4">{description}</p>
+                    <Link
+                      href={`/ingredients#${id}`}
+                      onClick={() => setIsHovered(false)}
+                      className="inline-block text-xs uppercase tracking-wider text-primary-foreground/80 hover:text-primary-foreground transition-colors border-b border-primary-foreground/40 hover:border-primary-foreground pb-0.5"
+                    >
+                      Learn More
+                    </Link>
                   </div>
                 </div>
               </>

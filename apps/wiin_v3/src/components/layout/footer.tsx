@@ -6,17 +6,17 @@ export function Footer() {
   return (
     <footer className="p-8">
       <div className="max-w-7xl mx-auto">
-        {/* WIIN Brand Section - Full Width on Mobile, First Column on Desktop */}
+        {/* WiiN Brand Section - Full Width on Mobile, First Column on Desktop */}
         <div className="mb-8 md:mb-0 md:hidden">
-          <h3 className="text-xl font-bold mb-4 tracking-wider">WIIN</h3>
+          <h3 className="text-xl font-bold mb-4 tracking-wider">WiiN</h3>
           <p className="text-sm text-muted-foreground uppercase tracking-wide">HEALTHY NICOTINE POUCHES</p>
         </div>
 
         {/* Grid - 3 columns on mobile, 4 columns on desktop */}
         <div className="grid grid-cols-3 md:grid-cols-4 gap-4 md:gap-8">
-          {/* WIIN - Hidden on mobile, shown on desktop */}
+          {/* WiiN - Hidden on mobile, shown on desktop */}
           <div className="hidden md:block">
-            <h3 className="text-xl font-bold mb-4 tracking-wider">WIIN</h3>
+            <h3 className="text-xl font-bold mb-4 tracking-wider">WiiN</h3>
             <p className="text-sm text-muted-foreground uppercase tracking-wide">HEALTHY NICOTINE POUCHES</p>
           </div>
           <div>
@@ -81,7 +81,7 @@ export function Footer() {
           </div>
         </div>
         <div className="dotted-border-top mt-8 pt-8 text-center">
-          <p className="text-sm text-muted-foreground uppercase tracking-wide">© 2025 WIIN. ALL RIGHTS RESERVED.</p>
+          <p className="text-sm text-muted-foreground uppercase tracking-wide">© 2025 WiiN. ALL RIGHTS RESERVED.</p>
         </div>
       </div>
     </footer>

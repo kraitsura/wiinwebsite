@@ -1,10 +1,11 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
+import Link from "next/link"
 import { IngredientCard } from "@/components/features/ingredient-card"
 
 export function MethodSection() {
-  const cardRef = useRef<HTMLDivElement>(null)
+  const cardRef = useRef<HTMLAnchorElement>(null)
   const [isInView, setIsInView] = useState(false)
   const [isTouchDevice, setIsTouchDevice] = useState(false)
 
@@ -42,25 +43,29 @@ export function MethodSection() {
             <h3 className="text-2xl font-bold mb-8 uppercase tracking-wide">ADVANCED FORMULATION</h3>
             <div className="space-y-6">
               <IngredientCard
+                id="nad"
                 title="NAD+"
                 subtitle="CELLULAR REGENERATION SUPPORT"
                 description="Supports cellular energy production and metabolic function in oral tissues. Promotes healthy gum tissue regeneration and helps maintain optimal cellular health during nicotine delivery."
               />
               <IngredientCard
+                id="peptides"
                 title="PEPTIDES"
                 subtitle="TISSUE REPAIR AND HEALING"
                 description="Specialized protein fragments that support tissue repair and collagen production in gum tissue. Aids in maintaining oral tissue integrity and promotes natural healing processes while using nicotine pouches."
               />
               <IngredientCard
+                id="exosomes"
                 title="EXOSOMES"
                 subtitle="ADVANCED CELLULAR COMMUNICATION"
                 description="Advanced cellular messengers that facilitate communication between cells in oral tissues. Supports healthy inflammatory response and tissue regeneration, promoting overall gum health during nicotine pouch use."
               />
             </div>
           </div>
-          <div
+          <Link
+            href="/research"
             ref={cardRef}
-            className={`relative border-4 border-foreground p-6 md:p-12 bg-background group transition-all duration-300 ${
+            className={`relative border-4 border-foreground p-6 md:p-12 bg-background group transition-all duration-300 block ${
               isTouchDevice && isInView
                 ? 'shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]'
                 : 'md:hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]'
@@ -81,7 +86,7 @@ export function MethodSection() {
                 THE FIRST AND ONLY NICOTINE POUCHES DESIGNED TO IMPROVE GUM HEALTH WHILE DELIVERING SATISFACTION
               </p>
             </div>
-          </div>
+          </Link>
         </div>
       </div>
     </section>

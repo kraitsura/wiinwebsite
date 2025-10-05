@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef } from 'react'
+import { motion } from 'framer-motion'
 import { Footer } from '@/components/layout/footer'
 import { Header } from '@/components/layout/header'
 import { HeroSection } from '@/components/sections/hero-section'
@@ -40,7 +41,12 @@ export default function Page() {
 	useTakeoverAnimation({ takeoverRef, triggerRef, isMobile })
 
 	return (
-		<main className="min-h-screen bg-background text-foreground overflow-hidden">
+		<motion.main
+			className="min-h-screen bg-background text-foreground overflow-hidden"
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			transition={{ duration: 0.3, ease: 'easeOut' }}
+		>
 			<Header />
 
 			{/* Hero section */}
@@ -66,6 +72,6 @@ export default function Page() {
 					<Footer />
 				</div>
 			</div>
-		</main>
+		</motion.main>
 	)
 }
