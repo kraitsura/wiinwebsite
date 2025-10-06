@@ -1,12 +1,20 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { gsap } from '@/lib/gsap-config'
 
 export function PowerYourDayStrips() {
   const containerRefs = useRef<(HTMLDivElement | null)[]>([])
+  const [isTouchDevice, setIsTouchDevice] = useState(false)
 
   useEffect(() => {
+    // Detect if device supports touch
+    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+  }, [])
+
+  useEffect(() => {
+    // Skip scroll animations for touch devices
+    if (isTouchDevice) return
     containerRefs.current.forEach((container, index) => {
       if (!container) return
 
@@ -47,7 +55,7 @@ export function PowerYourDayStrips() {
         )
       }
     })
-  }, [])
+  }, [isTouchDevice])
 
   const strips = [
     { color: "text-foreground" },  // 1: left to right, foreground (black/white)

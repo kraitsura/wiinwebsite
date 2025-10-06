@@ -26,10 +26,12 @@ export function TeamSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
-            <div className="flex items-center gap-3 md:flex-col md:gap-0 md:text-center">
-              <h3 className="text-lg md:text-xl font-extrabold uppercase tracking-wider">HAMMER</h3>
-              <div className="w-2 h-2 bg-foreground flex-shrink-0 md:hidden" />
-              <p className="text-xs text-muted-foreground uppercase tracking-wide md:mt-0.5">CO-FOUNDER</p>
+            <div className="flex flex-col gap-1 md:flex-col md:gap-0 md:text-center">
+              <div className="flex items-center gap-2 md:justify-center">
+                <div className="w-2 h-2 bg-foreground flex-shrink-0 md:hidden" />
+                <h3 className="text-lg md:text-xl font-extrabold uppercase tracking-wider">HAMMER</h3>
+              </div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wide text-left md:mt-0.5">CO-FOUNDER</p>
             </div>
           </div>
 
@@ -43,10 +45,12 @@ export function TeamSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
-            <div className="flex items-center gap-3 md:flex-col md:gap-0 md:text-center">
-              <h3 className="text-lg md:text-xl font-extrabold uppercase tracking-wider">DOUG</h3>
-              <div className="w-2 h-2 bg-foreground flex-shrink-0 md:hidden" />
-              <p className="text-xs text-muted-foreground uppercase tracking-wide md:mt-0.5">CO-FOUNDER</p>
+            <div className="flex flex-col gap-1 md:flex-col md:gap-0 md:text-center">
+              <div className="flex items-center gap-2 md:justify-center">
+                <div className="w-2 h-2 bg-foreground flex-shrink-0 md:hidden" />
+                <h3 className="text-lg md:text-xl font-extrabold uppercase tracking-wider">DOUG</h3>
+              </div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wide text-left md:mt-0.5">CO-FOUNDER</p>
             </div>
           </div>
 
@@ -60,10 +64,12 @@ export function TeamSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
-            <div className="flex items-center gap-3 md:flex-col md:gap-0 md:text-center">
-              <h3 className="text-lg md:text-xl font-extrabold uppercase tracking-wider">CATHY</h3>
-              <div className="w-2 h-2 bg-foreground flex-shrink-0 md:hidden" />
-              <p className="text-xs text-muted-foreground uppercase tracking-wide md:mt-0.5">CO-FOUNDER</p>
+            <div className="flex flex-col gap-1 md:flex-col md:gap-0 md:text-center">
+              <div className="flex items-center gap-2 md:justify-center">
+                <div className="w-2 h-2 bg-foreground flex-shrink-0 md:hidden" />
+                <h3 className="text-lg md:text-xl font-extrabold uppercase tracking-wider">CATHY</h3>
+              </div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wide text-left md:mt-0.5">CO-FOUNDER</p>
             </div>
           </div>
 
@@ -77,10 +83,12 @@ export function TeamSection() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
             </div>
-            <div className="flex items-center gap-3 md:flex-col md:gap-0 md:text-center">
-              <h3 className="text-lg md:text-xl font-extrabold uppercase tracking-wider">COURTNEY BABER</h3>
-              <div className="w-2 h-2 bg-foreground flex-shrink-0 md:hidden" />
-              <p className="text-xs text-muted-foreground uppercase tracking-wide md:mt-0.5">CO-FOUNDER</p>
+            <div className="flex flex-col gap-1 md:flex-col md:gap-0 md:text-center">
+              <div className="flex items-center gap-2 md:justify-center">
+                <div className="w-2 h-2 bg-foreground flex-shrink-0 md:hidden" />
+                <h3 className="text-lg md:text-xl font-extrabold uppercase tracking-wider">COURTNEY BABER</h3>
+              </div>
+              <p className="text-xs text-muted-foreground uppercase tracking-wide text-left md:mt-0.5">CO-FOUNDER</p>
             </div>
           </div>
         </div>
