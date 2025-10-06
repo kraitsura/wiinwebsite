@@ -1,10 +1,10 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useState } from 'react'
+import { AnimatedMenuIcon } from '@/components/ui/animated-menu-icon'
 
 const topRowLinks = [
 	{ href: '/ingredients', label: 'INGREDIENTS' },
@@ -68,11 +68,7 @@ export function PageHeader() {
 							className="p-2 hover:opacity-70 transition-opacity"
 							aria-label="Toggle menu"
 						>
-							{isMenuOpen ? (
-								<X size={32} strokeWidth={2} className="rounded-lg" />
-							) : (
-								<Menu size={32} strokeWidth={2} className="rounded-lg" />
-							)}
+							<AnimatedMenuIcon isOpen={isMenuOpen} />
 						</button>
 					</div>
 				</div>
@@ -101,8 +97,8 @@ export function PageHeader() {
 											<Link
 												key={link.href}
 												href={link.href}
-												className={`block text-2xl md:text-4xl font-light text-white hover:opacity-70 transition-all text-center py-2 rounded-md ${
-													isActive ? 'shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : ''
+												className={`block text-2xl md:text-4xl font-light text-white hover:opacity-70 transition-all text-center px-6 py-4 rounded-md ${
+													isActive ? 'bg-white/10 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : ''
 												}`}
 												onClick={handleNavClick}
 											>
@@ -119,8 +115,8 @@ export function PageHeader() {
 											<Link
 												key={link.href}
 												href={link.href}
-												className={`block text-2xl md:text-4xl font-light text-white hover:opacity-70 transition-all text-center py-2 rounded-md ${
-													isActive ? 'shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : ''
+												className={`block text-2xl md:text-4xl font-light text-white hover:opacity-70 transition-all text-center px-6 py-4 rounded-md ${
+													isActive ? 'bg-white/10 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]' : ''
 												}`}
 												onClick={handleNavClick}
 											>

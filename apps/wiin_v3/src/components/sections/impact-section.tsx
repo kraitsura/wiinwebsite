@@ -72,7 +72,7 @@ export function ImpactSection() {
   return (
     <section
       ref={sectionRef}
-      className={`py-32 px-4 relative overflow-hidden ${
+      className={`py-16 md:py-32 px-4 relative overflow-hidden ${
         isVisible ? (isReverse ? 'animate-reverse' : 'animate-forward') : ''
       }`}
       data-reverse={isReverse}
@@ -87,7 +87,7 @@ export function ImpactSection() {
 
       <div className="max-w-5xl mx-auto relative">
         {/* Main Headlines - Tighter Spacing */}
-        <div className="text-4xl md:text-6xl font-bold leading-tight tracking-wide mb-16">
+        <div className="text-4xl md:text-6xl font-bold leading-tight tracking-wide mb-8 md:mb-16">
           <h2 className="mb-2 headline-animate headline-1 overflow-hidden">
             <span className="inline-block">
               {isVisible && "TAKE BACK YOUR YEARS.".split('').map((char, i, arr) => (
@@ -130,20 +130,20 @@ export function ImpactSection() {
         </div>
 
         {/* Bottom Section */}
-        <div className={`pt-12 mt-12 border-section relative ${isVisible ? (isReverse ? 'visible-reverse' : 'visible') : ''}`}>
-          <div className="grid md:grid-cols-2 gap-12 mb-8">
+        <div className={`pt-8 md:pt-12 mt-8 md:mt-12 border-section relative ${isVisible ? (isReverse ? 'visible-reverse' : 'visible') : ''}`}>
+          <div className="grid md:grid-cols-2 gap-8 md:gap-12 mb-6 md:mb-8">
             <div className="content-slide-left">
               <div className="wellness-text-wrapper relative">
-                <h3 className="text-2xl font-bold mb-4 uppercase tracking-wide relative pl-10">
+                <h3 className="text-xl md:text-2xl font-bold mb-4 uppercase tracking-wide relative pl-8 md:pl-10">
                   WELLNESS MEETS SATISFACTION
                   {/* Corner brackets */}
-                  <span className="absolute -left-0 -top-6 text-primary bracket-animate">╔</span>
-                  <span className="absolute -right-0 -bottom-6 text-primary bracket-animate" style={{ animationDelay: '0.2s' }}>╝</span>
+                  <span className="absolute -left-0 -top-4 md:-top-6 text-primary bracket-animate text-xl md:text-2xl">╔</span>
+                  <span className="absolute -right-0 -bottom-4 md:-bottom-6 text-primary bracket-animate text-xl md:text-2xl" style={{ animationDelay: '0.2s' }}>╝</span>
                 </h3>
               </div>
             </div>
             <div className="content-slide-right">
-              <p className="text-sm uppercase tracking-wide leading-relaxed text-muted-foreground">
+              <p className="text-xs md:text-sm uppercase tracking-wide leading-relaxed text-muted-foreground">
                 TRADITIONAL NICOTINE POUCHES DAMAGE YOUR GUMS. <br />
                 WiiN REPAIRS THEM. IT'S THAT SIMPLE.
               </p>
@@ -304,10 +304,16 @@ export function ImpactSection() {
         .border-section::after {
           content: '';
           position: absolute;
-          top: 120px;
+          top: 200px;
           left: 0;
           width: 0%;
           border-top: 3px dotted oklch(0.1 0 0);
+        }
+
+        @media (min-width: 768px) {
+          .border-section::after {
+            top: 120px;
+          }
         }
 
         .border-section.visible::after {

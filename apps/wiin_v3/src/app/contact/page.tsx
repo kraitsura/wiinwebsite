@@ -7,17 +7,17 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen">
       <PageHeader />
-      <div className="px-8 pb-8 pt-24 max-w-7xl mx-auto h-screen flex flex-col justify-end">
+      <div className="px-8 pb-4 md:pb-8 pt-16 md:pt-24 max-w-7xl mx-auto h-screen flex flex-col justify-end">
 
         <div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-3 uppercase tracking-wider">
+          <h1 className="text-3xl md:text-5xl font-bold mb-3 uppercase tracking-wider">
             Contact
           </h1>
           <p className="text-sm text-muted-foreground uppercase tracking-wide max-w-3xl mb-8">
             Get in touch with the WiiN team.
           </p>
 
-          <form className="max-w-2xl space-y-6">
+          <form className="max-w-2xl space-y-4 md:space-y-6">
             <div className="space-y-1">
               <label htmlFor="name" className="text-xs uppercase tracking-widest text-muted-foreground">
                 Name
@@ -48,7 +48,7 @@ export default function ContactPage() {
               </label>
               <textarea
                 id="message"
-                rows={3}
+                rows={2}
                 className="w-full bg-transparent border-b border-border focus:border-foreground outline-none transition-colors py-2 text-base resize-none"
                 required
               />
@@ -56,7 +56,7 @@ export default function ContactPage() {
 
             <Button
               type="submit"
-              className="uppercase tracking-widest px-10 py-5 text-sm mt-8"
+              className="uppercase tracking-widest px-10 py-5 text-sm mt-4 md:mt-8"
             >
               Send
             </Button>

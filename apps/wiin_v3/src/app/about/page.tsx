@@ -2,68 +2,29 @@
 
 import { PageHeader } from "@/components/layout/page-header"
 import { ReadyToSwitchCTA } from "@/components/sections/ready-to-wiin-cta"
+import { FRAMER_VARIANTS } from "@/lib/constants/animations"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
 
-// Animation variants
-const fadeInUp = {
-  hidden: { opacity: 0, y: 60 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.7,
-      ease: [0.22, 1, 0.36, 1] as const
-    }
+// Static data - moved outside component for performance
+const PRINCIPLES = [
+  {
+    title: "TRANSPARENCY",
+    desc: "We tell you exactly what's in our pouches and why. No secrets, no proprietary blends hiding questionable ingredients."
+  },
+  {
+    title: "QUALITY",
+    desc: "We source the best ingredients and refuse to cut corners. Your health deserves premium materials."
+  },
+  {
+    title: "INNOVATION",
+    desc: "We're constantly researching and improving. The first oral wellness pouch is just the beginning."
+  },
+  {
+    title: "RESPONSIBILITY",
+    desc: "We believe companies should care about long-term user health, not just short-term profits."
   }
-}
-
-const fadeInScale = {
-  hidden: { opacity: 0, scale: 0.95 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      duration: 0.8,
-      ease: [0.22, 1, 0.36, 1] as const
-    }
-  }
-}
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1
-    }
-  }
-}
-
-const slideInLeft = {
-  hidden: { opacity: 0, x: -50 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.7,
-      ease: [0.22, 1, 0.36, 1] as const
-    }
-  }
-}
-
-const slideInRight = {
-  hidden: { opacity: 0, x: 50 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: {
-      duration: 0.7,
-      ease: [0.22, 1, 0.36, 1] as const
-    }
-  }
-}
+]
 
 export default function AboutPage() {
   const problemRef = useRef(null)
@@ -88,7 +49,7 @@ export default function AboutPage() {
           className="mt-12 mb-20"
           initial="hidden"
           animate="visible"
-          variants={fadeInScale}
+          variants={FRAMER_VARIANTS.fadeInScale}
         >
           <div className="border-4 border-foreground bg-primary text-primary-foreground p-8 md:p-12 shadow-[12px_12px_0px_0px_rgba(0,0,0,1)]">
             <p className="text-xl md:text-3xl font-bold leading-relaxed">
@@ -112,7 +73,7 @@ export default function AboutPage() {
               className="border-4 border-foreground p-6 bg-background"
               initial="hidden"
               animate={problemInView ? "visible" : "hidden"}
-              variants={slideInLeft}
+              variants={FRAMER_VARIANTS.slideInLeft}
             >
               <h3 className="text-xl font-bold mb-4 uppercase">Traditional Pouches</h3>
               <ul className="space-y-3 text-sm md:text-base font-mono">
@@ -138,7 +99,7 @@ export default function AboutPage() {
               className="border-4 border-foreground p-6 bg-foreground text-background"
               initial="hidden"
               animate={problemInView ? "visible" : "hidden"}
-              variants={slideInRight}
+              variants={FRAMER_VARIANTS.slideInRight}
             >
               <h3 className="text-xl font-bold mb-4 uppercase">WiiN Pouches</h3>
               <ul className="space-y-3 text-sm md:text-base font-mono">
@@ -223,11 +184,11 @@ export default function AboutPage() {
             className="grid md:grid-cols-3 gap-6"
             initial="hidden"
             animate={differentInView ? "visible" : "hidden"}
-            variants={staggerContainer}
+            variants={FRAMER_VARIANTS.staggerContainer}
           >
             <motion.div
               className="border-4 border-foreground p-6 bg-background hover:bg-primary hover:text-primary-foreground transition-all duration-300 group"
-              variants={fadeInUp}
+              variants={FRAMER_VARIANTS.fadeInUp}
             >
               <div className="text-4xl font-bold mb-4 group-hover:scale-110 transition-transform">01</div>
               <h3 className="text-xl font-bold mb-3 uppercase">Oral Health First</h3>
@@ -237,7 +198,7 @@ export default function AboutPage() {
             </motion.div>
             <motion.div
               className="border-4 border-foreground p-6 bg-background hover:bg-primary hover:text-primary-foreground transition-all duration-300 group"
-              variants={fadeInUp}
+              variants={FRAMER_VARIANTS.fadeInUp}
             >
               <div className="text-4xl font-bold mb-4 group-hover:scale-110 transition-transform">02</div>
               <h3 className="text-xl font-bold mb-3 uppercase">Science-Backed</h3>
@@ -247,7 +208,7 @@ export default function AboutPage() {
             </motion.div>
             <motion.div
               className="border-4 border-foreground p-6 bg-background hover:bg-primary hover:text-primary-foreground transition-all duration-300 group"
-              variants={fadeInUp}
+              variants={FRAMER_VARIANTS.fadeInUp}
             >
               <div className="text-4xl font-bold mb-4 group-hover:scale-110 transition-transform">03</div>
               <h3 className="text-xl font-bold mb-3 uppercase">No Compromise</h3>
@@ -272,30 +233,13 @@ export default function AboutPage() {
             className="space-y-8"
             initial="hidden"
             animate={principlesInView ? "visible" : "hidden"}
-            variants={staggerContainer}
+            variants={FRAMER_VARIANTS.staggerContainer}
           >
-            {[
-              {
-                title: "TRANSPARENCY",
-                desc: "We tell you exactly what's in our pouches and why. No secrets, no proprietary blends hiding questionable ingredients."
-              },
-              {
-                title: "QUALITY",
-                desc: "We source the best ingredients and refuse to cut corners. Your health deserves premium materials."
-              },
-              {
-                title: "INNOVATION",
-                desc: "We're constantly researching and improving. The first oral wellness pouch is just the beginning."
-              },
-              {
-                title: "RESPONSIBILITY",
-                desc: "We believe companies should care about long-term user health, not just short-term profits."
-              }
-            ].map((principle, index) => (
+            {PRINCIPLES.map((principle, index) => (
               <motion.div
                 key={index}
                 className="space-y-2"
-                variants={fadeInUp}
+                variants={FRAMER_VARIANTS.fadeInUp}
               >
                 <h3 className="text-xl md:text-2xl font-bold tracking-tight text-primary">{principle.title}</h3>
                 <p className="text-sm md:text-base text-muted-foreground leading-relaxed max-w-3xl border-l-2 border-primary/30 pl-4">{principle.desc}</p>

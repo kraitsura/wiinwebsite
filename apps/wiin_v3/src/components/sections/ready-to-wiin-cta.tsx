@@ -1,22 +1,9 @@
-"use client"
-
-import { motion, useInView } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import Link from "next/link"
-import { useRef } from "react"
 
 export function ReadyToSwitchCTA() {
-  const ctaRef = useRef(null)
-  const ctaInView = useInView(ctaRef, { once: true, margin: "-100px" })
-
   return (
-    <motion.div
-      ref={ctaRef}
-      className="w-full"
-      initial={{ opacity: 0, y: 60 }}
-      animate={ctaInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
-    >
+    <div className="w-full">
       <div className="border-y-4 border-foreground bg-foreground text-background p-8 md:p-12">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">READY TO WiiN?</h2>
@@ -28,11 +15,11 @@ export function ReadyToSwitchCTA() {
           </Button>
           <div className="mt-8 text-center">
             <p className="text-xs font-light tracking-wide opacity-60">
-              © Wiin all rights reserved
+              © WiiN all rights reserved
             </p>
           </div>
         </div>
       </div>
-    </motion.div>
+    </div>
   )
 }

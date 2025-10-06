@@ -1,9 +1,9 @@
 'use client'
 
 import { AnimatePresence, motion } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
 import { useState } from 'react'
 import { useGsapNavigation } from '@/hooks/use-gsap-navigation'
+import { AnimatedMenuIcon } from '@/components/ui/animated-menu-icon'
 
 export function Header() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -28,11 +28,7 @@ export function Header() {
 						className="p-2 hover:opacity-70 transition-opacity"
 						aria-label="Toggle menu"
 					>
-						{isMenuOpen ? (
-							<X size={32} strokeWidth={2} className="rounded-lg" />
-						) : (
-							<Menu size={32} strokeWidth={2} className="rounded-lg" />
-						)}
+						<AnimatedMenuIcon isOpen={isMenuOpen} />
 					</button>
 				</div>
 			</header>

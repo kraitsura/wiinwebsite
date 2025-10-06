@@ -48,6 +48,7 @@ export function useScrollAnimation<T extends HTMLElement = HTMLDivElement>(optio
           duration,
           delay,
           stagger,
+          ease: "power2.out",
         })
       } else {
         // Animate single element
@@ -62,6 +63,7 @@ export function useScrollAnimation<T extends HTMLElement = HTMLDivElement>(optio
           opacity,
           duration,
           delay,
+          ease: "power2.out",
         })
       }
     })
@@ -94,4 +96,57 @@ export function useLoadAnimation(options: { y?: number; opacity?: number; durati
   }, [options.y, options.opacity, options.duration, options.delay])
 
   return elementRef
+}
+
+interface HeroLoadAnimationRefs {
+  titleRef: React.RefObject<HTMLHeadingElement | null>
+  sloganRef: React.RefObject<HTMLParagraphElement | null>
+  subtitleRef: React.RefObject<HTMLParagraphElement | null>
+  buttonsRef: React.RefObject<HTMLDivElement | null>
+}
+
+export function useHeroLoadAnimation(): HeroLoadAnimationRefs {
+  const titleRef = useRef<HTMLHeadingElement | null>(null)
+  const sloganRef = useRef<HTMLParagraphElement | null>(null)
+  const subtitleRef = useRef<HTMLParagraphElement | null>(null)
+  const buttonsRef = useRef<HTMLDivElement | null>(null)
+
+  useEffect(() => {
+    const elements = [titleRef.current, sloganRef.current, subtitleRef.current, buttonsRef.current]
+
+    // Only proceed if all elements are mounted
+    if (elements.some(el => !el)) return
+
+    const ctx = gsap.context(() => {
+      // Create timeline for sequential animations
+      const tl = gsap.timeline({
+        defaults: {
+          duration: 0.8,
+          ease: "power2.out",
+        }
+      })
+
+      // Animate elements sequentially with stagger
+      tl.from(titleRef.current, {
+        y: 30,
+        opacity: 0,
+      })
+      .from(sloganRef.current, {
+        y: 30,
+        opacity: 0,
+      }, "-=0.6") // Start 0.6s before previous animation ends (overlap for smoothness)
+      .from(subtitleRef.current, {
+        y: 30,
+        opacity: 0,
+      }, "-=0.6")
+      .from(buttonsRef.current, {
+        y: 30,
+        opacity: 0,
+      }, "-=0.6")
+    })
+
+    return () => ctx.revert()
+  }, [])
+
+  return { titleRef, sloganRef, subtitleRef, buttonsRef }
 }

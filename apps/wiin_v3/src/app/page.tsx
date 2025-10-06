@@ -11,11 +11,11 @@ import { MethodSection } from '@/components/sections/method-section'
 import { ImpactSection } from '@/components/sections/impact-section'
 import { TeamSection } from '@/components/sections/team-section'
 import { CTASection } from '@/components/sections/cta-section'
-import { useScrollAnimation } from '@/hooks/use-scroll-animation'
+import { useScrollAnimation, useHeroLoadAnimation } from '@/hooks/use-scroll-animation'
 import { useIsMobile } from '@/hooks/use-mobile'
 import { useScrollToTop } from '@/hooks/use-scroll-to-top'
 import { useTakeoverAnimation } from '@/hooks/use-takeover-animation'
-import { HERO_ANIMATIONS, WIINING_WAY_ANIMATIONS } from '@/lib/constants/animations'
+import { WIINING_WAY_ANIMATIONS } from '@/lib/constants/animations'
 
 export default function Page() {
 	const isMobile = useIsMobile()
@@ -23,11 +23,8 @@ export default function Page() {
 	// Scroll to top on mount
 	useScrollToTop()
 
-	// Hero section scroll animations
-	const titleRef = useScrollAnimation<HTMLHeadingElement>(HERO_ANIMATIONS.title)
-	const sloganRef = useScrollAnimation<HTMLParagraphElement>(HERO_ANIMATIONS.slogan)
-	const subtitleRef = useScrollAnimation<HTMLParagraphElement>(HERO_ANIMATIONS.subtitle)
-	const buttonsRef = useScrollAnimation(HERO_ANIMATIONS.buttons)
+	// Hero section page-load animations
+	const { titleRef, sloganRef, subtitleRef, buttonsRef } = useHeroLoadAnimation()
 
 	// Wiining Way section scroll animations
 	const wiiningWayTitleRef = useScrollAnimation(WIINING_WAY_ANIMATIONS.title)
