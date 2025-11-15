@@ -233,7 +233,7 @@ export function Hero({ heroLeftRef, missionSectionRef, missionCardsRef, heroFixe
 
 						{/* Text Content */}
 						<div className="space-y-2 text-center md:text-right">
-							<p className="text-sm md:text-base leading-tight">ORAL WELLNESS NICOTINE POUCHES</p>
+							<p className="text-sm md:text-base leading-tight">GENERAL BODY WELLNESS NICOTINE POUCHES</p>
 							<p className="text-xs md:text-sm leading-tight text-muted-foreground">
 								THE FIRST NICOTINE POUCH THAT'S GOOD FOR YOUR GUMS.
 							</p>

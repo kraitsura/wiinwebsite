@@ -15,7 +15,7 @@ interface FAQ {
 const faqs: FAQ[] = [
   {
     question: "What is WiiN?",
-    answer: "WiiN is an innovative oral wellness nicotine pouch enhanced with NAD+ (Nicotinamide Adenine Dinucleotide). It combines nicotine satisfaction with cellular energy support, offering a unique approach to oral wellness.",
+    answer: "WiiN is an innovative general body wellness nicotine pouch enhanced with NAD+ (Nicotinamide Adenine Dinucleotide). It combines nicotine satisfaction with cellular energy support, offering a unique approach to general body wellness.",
     category: "Product"
   },
   {
@@ -30,7 +30,7 @@ const faqs: FAQ[] = [
   },
   {
     question: "Are WiiN pouches safe?",
-    answer: "WiiN pouches are tobacco-free and designed with oral wellness in mind. However, they do contain nicotine, which is addictive. They are intended for adult nicotine users only. Please consult with a healthcare professional if you have concerns.",
+    answer: "WiiN pouches are tobacco-free and designed with general body wellness in mind. However, they do contain nicotine, which is addictive. They are intended for adult nicotine users only. Please consult with a healthcare professional if you have concerns.",
     category: "Safety"
   },
   {

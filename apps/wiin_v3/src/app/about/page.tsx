@@ -18,7 +18,7 @@ const PRINCIPLES = [
   },
   {
     title: "INNOVATION",
-    desc: "We're constantly researching and improving. The first oral wellness pouch is just the beginning."
+    desc: "We're constantly researching and improving. The first general body wellness pouch is just the beginning."
   },
   {
     title: "RESPONSIBILITY",
@@ -109,7 +109,7 @@ export default function AboutPage() {
                 </li>
                 <li className="flex items-start">
                   <span className="mr-3 font-bold">✓</span>
-                  <span>Support oral wellness</span>
+                  <span>Support general body wellness</span>
                 </li>
                 <li className="flex items-start">
                   <span className="mr-3 font-bold">✓</span>

@@ -3,6 +3,14 @@
 
 @custom-variant dark (&:is(.dark *));
 
+@font-face {
+  font-family: 'HelveticaCustom';
+  src: url('/Fonts/Helvetica.ttc');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: oklch(0.98 0 0);
   --foreground: oklch(0.1 0 0);
@@ -72,6 +80,7 @@
 @theme inline {
   --font-sans: var(--font-geist-mono);
   --font-mono: var(--font-geist-mono);
+  --font-heading: 'HelveticaCustom', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -196,4 +205,10 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Heading font styles - outside layer for maximum priority */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'HelveticaCustom', 'Helvetica Neue', Helvetica, Arial, sans-serif !important;
+  font-style: italic !important;
 }
