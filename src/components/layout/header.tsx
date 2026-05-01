@@ -1,0 +1,86 @@
+'use client'
+
+import { AnimatePresence, motion } from 'framer-motion'
+import { useState } from 'react'
+import { useGsapNavigation } from '@/hooks/use-gsap-navigation'
+import { AnimatedMenuIcon } from '@/components/ui/animated-menu-icon'
+
+export function Header() {
+	const [isMenuOpen, setIsMenuOpen] = useState(false)
+	const { navigateToSection } = useGsapNavigation()
+
+	const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+		e.preventDefault()
+		setIsMenuOpen(false)
+
+		// Small delay to allow menu to close before scrolling
+		setTimeout(() => {
+			navigateToSection(targetId)
+		}, 300)
+	}
+
+	return (
+		<>
+			<header className="fixed top-0 left-0 right-0 z-50">
+				<div className="max-w-7xl mx-auto px-4 py-6 flex justify-end items-center">
+					<button
+						onClick={() => setIsMenuOpen(!isMenuOpen)}
+						className="p-2 hover:opacity-70 transition-opacity"
+						aria-label="Toggle menu"
+					>
+						<AnimatedMenuIcon isOpen={isMenuOpen} />
+					</button>
+				</div>
+			</header>
+
+			<AnimatePresence>
+				{isMenuOpen && (
+					<motion.div
+						initial={{ y: '-100%' }}
+						animate={{ y: 0 }}
+						exit={{ y: '-100%' }}
+						transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] as const }}
+						className="fixed inset-0 z-40 flex items-center justify-start bg-primary px-4 md:px-8"
+						style={{ willChange: 'transform' }}
+					>
+						<div className="flex w-full max-w-7xl mx-auto">
+							<h2 className="text-6xl md:text-8xl font-black text-white w-[30%] flex-shrink-0">
+								MENU
+							</h2>
+							<nav className="flex flex-col justify-center space-y-8 pl-8 md:pl-16">
+								<a
+									href="#mission"
+									className="block text-3xl md:text-5xl font-light text-white hover:opacity-70 transition-opacity"
+									onClick={(e) => handleNavClick(e, '#mission')}
+								>
+									MISSION
+								</a>
+								<a
+									href="#method"
+									className="block text-3xl md:text-5xl font-light text-white hover:opacity-70 transition-opacity"
+									onClick={(e) => handleNavClick(e, '#method')}
+								>
+									METHOD
+								</a>
+								<a
+									href="#team"
+									className="block text-3xl md:text-5xl font-light text-white hover:opacity-70 transition-opacity"
+									onClick={(e) => handleNavClick(e, '#team')}
+								>
+									TEAM
+								</a>
+								<a
+									href="/contact"
+									className="block text-3xl md:text-5xl font-light text-white hover:opacity-70 transition-opacity"
+									onClick={() => setIsMenuOpen(false)}
+								>
+									CONTACT US
+								</a>
+							</nav>
+						</div>
+					</motion.div>
+				)}
+			</AnimatePresence>
+		</>
+	)
+}
