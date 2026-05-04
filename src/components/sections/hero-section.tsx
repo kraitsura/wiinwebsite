@@ -126,13 +126,6 @@ export function HeroSection({ titleRef, sloganRef, subtitleRef, buttonsRef }: He
         </div>
       </div>
 
-      <div
-        aria-hidden
-        className="pointer-events-none absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 text-white/70 md:flex"
-      >
-        <span className="text-[10px] tracking-[0.3em] uppercase">Scroll</span>
-        <span className="block h-8 w-px bg-current animate-pulse" />
-      </div>
     </section>
   )
 }

@@ -1,92 +1,103 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import Link from "next/link"
+import { ArrowLeft } from "lucide-react"
+import { useRouter } from "next/navigation"
 import { IngredientCard } from "@/components/features/ingredient-card"
+import type { Ingredient } from "@/lib/ingredients-data"
 
-export function MethodSection() {
-  const cardRef = useRef<HTMLAnchorElement>(null)
-  const [isInView, setIsInView] = useState(false)
-  const [isTouchDevice, setIsTouchDevice] = useState(false)
+interface MethodSectionProps {
+  productName: string
+  formulaName: string
+  ingredients: readonly Ingredient[]
+}
 
-  useEffect(() => {
-    // Detect if device supports touch
-    setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0)
+const MANTRA = ["CLEAN.", "PURE.", "NEVER", "BEEN", "DONE."]
 
-    // Intersection Observer to detect when card is in viewport
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting)
-      },
-      { threshold: 0.5 } // Trigger when 50% of card is visible
-    )
-
-    if (cardRef.current) {
-      observer.observe(cardRef.current)
-    }
-
-    return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current)
-      }
-    }
-  }, [])
+export function MethodSection({ productName, formulaName, ingredients }: MethodSectionProps) {
+  const router = useRouter()
 
   return (
-    <section id="method" className="py-12 md:py-24 px-4 bg-muted min-h-screen">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-6xl font-bold mb-8 md:mb-16 text-center tracking-wider">
-          THE METHOD
-        </h2>
-        <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
-          <div>
-            <h3 className="text-2xl font-bold mb-8 uppercase tracking-wide">WiiN DAILY COMPLEX™</h3>
-            <div className="space-y-6">
-              <IngredientCard
-                id="peptides"
-                title="PEPTIDES"
-                subtitle="TISSUE REPAIR AND HEALING"
-                description="Specialized protein fragments that support tissue repair and collagen production in gum tissue. Aids in maintaining oral tissue integrity and promotes natural healing processes while delivering nicotine satisfaction."
-              />
-              <IngredientCard
-                id="b-vitamins"
-                title="B-VITAMINS"
-                subtitle="CLEAN ENERGY AND CLEAR FOCUS"
-                description="Essential cofactors that support cellular energy metabolism and cognitive performance. Delivers the clean, sustained focus you need to win your day — without the crash of synthetic stimulants."
-              />
-              <IngredientCard
-                id="exosomes"
-                title="EXOSOMES"
-                subtitle="ADVANCED CELLULAR COMMUNICATION"
-                description="Advanced cellular messengers that facilitate communication between cells in oral tissues. Supports healthy inflammatory response and tissue regeneration, promoting overall gum health during nicotine pouch use."
-              />
+    <section
+      id="method"
+      className="relative min-h-screen px-4 pt-24 md:pt-28 pb-8 md:pb-12 bg-white"
+    >
+      <div className="relative max-w-6xl mx-auto">
+        <button
+          type="button"
+          onClick={() => router.back()}
+          className="group inline-flex items-center gap-2 mb-6 md:mb-8 text-[11px] tracking-[0.3em] uppercase text-foreground/70 hover:text-foreground transition-colors"
+          aria-label="Go back"
+        >
+          <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
+          Back
+        </button>
+
+        {/* Header */}
+        <div className="mb-6 md:mb-10">
+          <p className="text-[11px] tracking-[0.3em] uppercase text-foreground/60 mb-2 md:mb-3">
+            {productName} / The Method
+          </p>
+          <h2 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-wider leading-[0.85]">
+            THE
+            <br />
+            METHOD
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-12 gap-6 md:gap-12 items-start">
+          {/* LEFT — Active Ingredients */}
+          <div className="md:col-span-7">
+            <div className="flex items-baseline gap-3 md:gap-4 mb-5 md:mb-7">
+              <span className="text-[11px] tracking-[0.3em] uppercase text-foreground/60 flex-shrink-0">
+                01 / Formula
+              </span>
+              <span className="h-px flex-1 bg-foreground/30" />
+              <h3 className="text-xs md:text-sm font-bold uppercase tracking-wide flex-shrink-0">
+                {formulaName}
+              </h3>
+            </div>
+
+            <div className="space-y-3 md:space-y-4">
+              {ingredients.map((ing, i) => (
+                <div key={ing.id} className="flex items-start gap-4 md:gap-6">
+                  <span className="pt-0.5 text-2xl md:text-3xl font-bold tracking-wider text-foreground/25 tabular-nums leading-none flex-shrink-0">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <IngredientCard
+                      id={ing.id}
+                      title={ing.title}
+                      subtitle={ing.subtitle}
+                      description={ing.description}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-          <Link
-            href="/research"
-            ref={cardRef}
-            className={`relative border-4 border-foreground p-6 md:p-12 bg-background group transition-all duration-300 block ${
-              isTouchDevice && isInView
-                ? 'shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]'
-                : 'md:hover:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)]'
-            }`}
-          >
-            {/* Corner accent mark */}
-            <div className="absolute top-4 left-4 w-3 h-3 border-2 border-primary bg-primary" />
 
-            <div className="space-y-8">
-              <h3 className="text-2xl font-bold uppercase tracking-widest text-center">
-                The Step-Down Method
-              </h3>
-
-              {/* Subtle divider */}
-              <div className="w-16 h-[2px] bg-foreground mx-auto" />
-
-              <p className="text-base text-center uppercase tracking-wider leading-loose max-w-md mx-auto">
-                A FIRST-OF-ITS-KIND POUCH BUILT BY A DOCTOR-LED TEAM. CLEAN. PURE. NEVER BEEN DONE.
-              </p>
+          {/* RIGHT — Mantra */}
+          <div className="md:col-span-5">
+            <div className="flex items-baseline gap-4 mb-5 md:mb-7">
+              <span className="text-[11px] tracking-[0.3em] uppercase text-foreground/60">
+                02 / Mantra
+              </span>
+              <span className="h-px flex-1 bg-foreground/30" />
             </div>
-          </Link>
+
+            <div className="border-l-4 border-primary pl-5 md:pl-7 flex flex-col leading-[0.9] font-bold tracking-tight">
+              {MANTRA.map((line, i) => (
+                <span
+                  key={line}
+                  className={`text-4xl md:text-5xl lg:text-6xl ${
+                    i === 2 ? "text-primary" : ""
+                  }`}
+                >
+                  {line}
+                </span>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

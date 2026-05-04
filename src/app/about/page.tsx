@@ -1,7 +1,6 @@
 "use client"
 
 import { PageHeader } from "@/components/layout/page-header"
-import { ReadyToSwitchCTA } from "@/components/sections/ready-to-wiin-cta"
 import { FRAMER_VARIANTS } from "@/lib/constants/animations"
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
@@ -249,9 +248,6 @@ export default function AboutPage() {
         </div>
 
       </div>
-
-      {/* Final CTA */}
-      <ReadyToSwitchCTA />
     </div>
   )
 }

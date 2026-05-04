@@ -1,7 +1,6 @@
 'use client'
 
 import { PageHeader } from "@/components/layout/page-header"
-import { ReadyToSwitchCTA } from "@/components/sections/ready-to-wiin-cta"
 import { motion } from "framer-motion"
 
 const benefits = [
@@ -112,9 +111,6 @@ export default function BenefitsPage() {
         </motion.div>
 
       </div>
-
-      {/* CTA Section */}
-      <ReadyToSwitchCTA />
     </div>
   )
 }

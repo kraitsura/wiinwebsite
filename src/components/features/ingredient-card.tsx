@@ -2,8 +2,6 @@
 
 import { useState, useRef } from 'react'
 import { createPortal } from 'react-dom'
-import Link from 'next/link'
-import { useRouter } from 'next/navigation'
 import { useIsMobile } from '@/hooks/use-mobile'
 
 interface IngredientCardProps {
@@ -13,8 +11,7 @@ interface IngredientCardProps {
   id: string
 }
 
-export function IngredientCard({ title, subtitle, description, id }: IngredientCardProps) {
-  const router = useRouter()
+export function IngredientCard({ title, subtitle, description, id: _id }: IngredientCardProps) {
   const isMobile = useIsMobile()
   const [isHovered, setIsHovered] = useState(false)
   const [dialogPosition, setDialogPosition] = useState({ x: 0, y: 0 })
@@ -25,8 +22,8 @@ export function IngredientCard({ title, subtitle, description, id }: IngredientC
     if (!dialogRef.current) return { x: mouseX + 20, y: mouseY + 20 }
 
     const dialog = dialogRef.current
-    const dialogWidth = dialog.offsetWidth || 320 // fallback to w-80 width
-    const dialogHeight = dialog.offsetHeight || 200 // estimated height
+    const dialogWidth = dialog.offsetWidth || 320
+    const dialogHeight = dialog.offsetHeight || 200
     const viewportWidth = window.innerWidth
     const viewportHeight = window.innerHeight
     const padding = 20
@@ -35,56 +32,37 @@ export function IngredientCard({ title, subtitle, description, id }: IngredientC
     let x = mouseX + offset
     let y = mouseY + offset
 
-    // Check if dialog would overflow right edge
     if (x + dialogWidth + padding > viewportWidth) {
       x = mouseX - dialogWidth - offset
     }
-
-    // Check if dialog would overflow bottom edge
     if (y + dialogHeight + padding > viewportHeight) {
       y = mouseY - dialogHeight - offset
     }
-
-    // Ensure dialog doesn't go off left edge
-    if (x < padding) {
-      x = padding
-    }
-
-    // Ensure dialog doesn't go off top edge
-    if (y < padding) {
-      y = padding
-    }
+    if (x < padding) x = padding
+    if (y < padding) y = padding
 
     return { x, y }
   }
 
   const handleMouseMove = (e: React.MouseEvent) => {
     if (!isMobile) {
-      const position = calculatePosition(e.clientX, e.clientY)
-      setDialogPosition(position)
+      setDialogPosition(calculatePosition(e.clientX, e.clientY))
     }
   }
 
   const handleMouseEnter = (e: React.MouseEvent) => {
     if (!isMobile) {
       setIsHovered(true)
-      const position = calculatePosition(e.clientX, e.clientY)
-      setDialogPosition(position)
+      setDialogPosition(calculatePosition(e.clientX, e.clientY))
     }
   }
 
   const handleMouseLeave = () => {
-    if (!isMobile) {
-      setIsHovered(false)
-    }
+    if (!isMobile) setIsHovered(false)
   }
 
   const handleClick = () => {
-    if (isMobile) {
-      setIsHovered(!isHovered)
-    } else {
-      router.push(`/ingredients#${id}`)
-    }
+    if (isMobile) setIsHovered(!isHovered)
   }
 
   return (
@@ -106,20 +84,18 @@ export function IngredientCard({ title, subtitle, description, id }: IngredientC
         }}
         aria-label={`${title}: ${subtitle}`}
       >
-        <div className="transition-colors duration-200 group-hover:text-white">
-          <h4 className="font-bold text-lg mb-2 uppercase tracking-wide">{title}</h4>
-          <p className="text-sm text-muted-foreground uppercase tracking-wide group-hover:text-white/80">
+        <div className="transition-colors duration-200">
+          <h4 className="font-bold text-base md:text-lg mb-1 uppercase tracking-wide leading-tight">{title}</h4>
+          <p className="text-xs md:text-sm text-muted-foreground uppercase tracking-wide leading-tight">
             {subtitle}
           </p>
         </div>
       </div>
 
-      {/* Dialog */}
       {isHovered &&
         typeof document !== "undefined" &&
         createPortal(
           <>
-            {/* Mobile dialog - centered overlay */}
             {isMobile ? (
               <>
                 <div
@@ -151,19 +127,11 @@ export function IngredientCard({ title, subtitle, description, id }: IngredientC
                         </svg>
                       </button>
                     </div>
-                    <p className="text-sm leading-relaxed opacity-95 mb-4">{description}</p>
-                    <Link
-                      href={`/ingredients#${id}`}
-                      onClick={() => setIsHovered(false)}
-                      className="inline-block text-xs uppercase tracking-wider text-primary-foreground/80 hover:text-primary-foreground transition-colors border-b border-primary-foreground/40 hover:border-primary-foreground pb-0.5"
-                    >
-                      Learn More
-                    </Link>
+                    <p className="text-sm leading-relaxed opacity-95">{description}</p>
                   </div>
                 </div>
               </>
             ) : (
-              /* Desktop dialog - follows cursor with smart positioning */
               <div
                 ref={dialogRef}
                 className="fixed z-50 pointer-events-none animate-in fade-in zoom-in-95 duration-150"

@@ -10,8 +10,8 @@ const teamMembers = [
   {
     id: "hammer",
     name: "HAMMER",
-    role: "CO-FOUNDER",
-    description: "Hammer brings decades of experience in the energy drink industry and a passion for natural, sustainable ingredients. As a co-founder, Hammer leads product development and innovation.",
+    role: "VP OF SALES",
+    description: "Hammer brings decades of experience in the energy drink industry and a passion for natural, sustainable ingredients. As VP of Sales, Hammer leads go-to-market strategy and revenue growth.",
   },
   {
     id: "doug",
@@ -24,12 +24,6 @@ const teamMembers = [
     name: "CATHY",
     role: "CO-FOUNDER",
     description: "Cathy is a creative force with expertise in design and customer experience. She leads the creative vision and ensures WiiN connects authentically with its community.",
-  },
-  {
-    id: "courtney",
-    name: "COURTNEY BABER",
-    role: "CO-FOUNDER",
-    description: "Courtney brings strategic insight and operational excellence to WiiN. With a focus on growth and innovation, Courtney plays a key role in driving the company's vision forward.",
   },
 ]
 
