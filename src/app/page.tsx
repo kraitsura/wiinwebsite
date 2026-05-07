@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Header } from '@/components/layout/header'
+import { LoadingScreen } from '@/components/common/loading-screen'
 import { HeroSection } from '@/components/sections/hero-section'
 import { MissionSection } from '@/components/sections/mission-section'
 import { useScrollAnimation, useHeroLoadAnimation } from '@/hooks/use-scroll-animation'
@@ -23,6 +24,7 @@ export default function Page() {
 			animate={{ opacity: 1 }}
 			transition={{ duration: 0.3, ease: 'easeOut' }}
 		>
+			<LoadingScreen />
 			<Header />
 
 			<HeroSection

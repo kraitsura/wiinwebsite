@@ -59,6 +59,10 @@ export function HeroSection({ titleRef, sloganRef, subtitleRef, buttonsRef }: He
   return (
     <section className="relative isolate flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pt-24 pb-20">
       {/* Background video */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-30 bg-black"
+      />
       <video
         aria-hidden
         autoPlay
@@ -66,7 +70,6 @@ export function HeroSection({ titleRef, sloganRef, subtitleRef, buttonsRef }: He
         muted
         playsInline
         preload="metadata"
-        poster="/wiin/bluewiin.png"
         className="pointer-events-none absolute inset-0 -z-20 h-full w-full object-cover"
       >
         <source src="/12917856_3840_2160_25fps.mp4" type="video/mp4" />
@@ -88,7 +91,7 @@ export function HeroSection({ titleRef, sloganRef, subtitleRef, buttonsRef }: He
         <RotatingImages />
         <h1
           ref={titleRef}
-          className="-mt-16 md:-mt-24 mb-8 text-6xl md:text-8xl font-bold tracking-wider"
+          className="hero-heading -mt-16 md:-mt-24 mb-8 text-6xl md:text-8xl font-bold tracking-wider"
         >
           WiiN
         </h1>
@@ -100,10 +103,17 @@ export function HeroSection({ titleRef, sloganRef, subtitleRef, buttonsRef }: He
         </p>
         <p
           ref={subtitleRef}
-          className="mb-12 max-w-3xl text-balance text-sm md:text-base text-white/80 uppercase tracking-wide leading-relaxed"
+          className="mb-6 max-w-3xl text-balance text-sm md:text-base text-white/80 uppercase tracking-wide leading-relaxed"
         >
           DOCTOR-DESIGNED WELLNESS POUCHES WITH THE <span className="whitespace-nowrap">WiiN DAILY COMPLEX™</span> — PEPTIDES, <span className="whitespace-nowrap">B&#8209;VITAMINS</span> &amp; EXOSOMES
         </p>
+        <div className="[text-shadow:none] mb-12 inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-4 py-1.5 backdrop-blur-md">
+          <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-red-500" />
+          <span className="text-[10px] md:text-xs font-semibold uppercase tracking-[0.3em] text-white/90">
+            Made in California
+          </span>
+          <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-red-500" />
+        </div>
         <div
           ref={buttonsRef}
           className="flex flex-col md:flex-row gap-4 justify-center items-center"
@@ -121,7 +131,7 @@ export function HeroSection({ titleRef, sloganRef, subtitleRef, buttonsRef }: He
             size="lg"
             className="border-2 border-white bg-transparent text-white hover:bg-white hover:text-black text-sm uppercase tracking-widest px-8 py-4"
           >
-            <Link href="/about">LEARN MORE</Link>
+            <Link href="/ingredients">LEARN MORE</Link>
           </Button>
         </div>
       </div>
