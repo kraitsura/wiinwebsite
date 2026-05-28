@@ -21,11 +21,10 @@ export default async function ProductIngredientsPage({
   const data = PRODUCTS[product as Product["slug"]]
 
   return (
-    <div className="min-h-screen scroll-smooth">
+    <div className="h-[calc(100dvh-3.5rem)] md:h-[calc(100dvh-4rem)] overflow-hidden">
       <PageHeader />
       <MethodSection
         productName={data.name}
-        formulaName={data.formulaName}
         ingredients={data.ingredients}
       />
     </div>

@@ -5,6 +5,8 @@ import type { Metadata } from 'next'
 import type React from 'react'
 import { Suspense } from 'react'
 import { AgeVerificationDialog } from '@/components/common/age-verification-dialog'
+import { NicotineAdvisoryBanner } from '@/components/layout/nicotine-advisory-banner'
+import { ChatWidget } from '@/components/features/chat-widget'
 import './globals.css'
 
 const bebasNeue = Bebas_Neue({
@@ -14,9 +16,9 @@ const bebasNeue = Bebas_Neue({
 })
 
 export const metadata: Metadata = {
-	title: 'WiiN daily — Clean Energy. Clear Focus. Better Health.',
+	title: 'WiiN daily — Stronger, Healthier, and Now Enhanced Supplements',
 	description:
-		'Doctor-designed wellness pouches built with the WiiN Daily Complex™ — peptides, B-vitamins, and exosomes. Clean. Pure. Never been done.',
+		'Doctor-designed wellness supplement pouches built with the WiiN Daily Complex™ — peptides, B-vitamins, and exosomes. Organic Clean Power. Novel Product, First to Market.',
 	generator: 'v0.app',
 }
 
@@ -41,9 +43,11 @@ export default function RootLayout({
 					}}
 				/>
 			</head>
-			<body className={`font-mono ${GeistMono.variable} ${bebasNeue.variable} antialiased`}>
+			<body className={`font-mono ${GeistMono.variable} ${bebasNeue.variable} antialiased pt-14 md:pt-16`}>
+				<NicotineAdvisoryBanner />
 				<Suspense fallback={null}>{children}</Suspense>
 				<AgeVerificationDialog />
+				<ChatWidget />
 				<Analytics />
 			</body>
 		</html>

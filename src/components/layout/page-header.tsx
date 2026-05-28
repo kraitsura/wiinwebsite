@@ -8,20 +8,20 @@ import { AnimatedMenuIcon } from '@/components/ui/animated-menu-icon'
 
 const topRowLinks = [
 	{ href: '/ingredients', label: 'INGREDIENTS' },
-	{ href: '/benefits', label: 'BENEFITS' },
-	{ href: '/research', label: 'RESEARCH' },
+	{ href: '/team', label: 'TEAM' },
+	{ href: '/investors', label: 'INVESTORS' },
 ]
 
 const bottomRowLinks = [
-	{ href: '/team', label: 'TEAM' },
-	{ href: '/order', label: 'ORDER' },
+	{ href: '/blog', label: 'BLOG' },
 	{ href: '/faq', label: 'FAQ' },
+	{ href: '/contact', label: 'CONTACT' },
 ]
 
 const centerLinks = [
 	{ href: '/', label: 'HOME' },
-	{ href: '/about', label: 'ABOUT' },
-	{ href: '/contact', label: 'CONTACT' },
+	{ href: '/team', label: 'TEAM' },
+	{ href: '/investors', label: 'INVESTORS' },
 ]
 
 export function PageHeader() {
@@ -34,7 +34,7 @@ export function PageHeader() {
 
 	return (
 		<>
-			<header className="fixed top-0 left-0 right-0 z-50">
+			<header className="fixed top-14 md:top-16 left-0 right-0 z-50">
 				<div className="max-w-7xl mx-auto px-4 py-6 grid grid-cols-3 items-center">
 					{/* Left Spacer - Only on desktop */}
 					<div className="hidden md:block" />
@@ -107,7 +107,7 @@ export function PageHeader() {
 										)
 									})}
 								</nav>
-								{/* Bottom Row - 3 items */}
+								{/* Bottom Row */}
 								<nav className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
 									{bottomRowLinks.map((link) => {
 										const isActive = pathname === link.href

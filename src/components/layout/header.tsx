@@ -6,11 +6,11 @@ import Link from 'next/link'
 import { AnimatedMenuIcon } from '@/components/ui/animated-menu-icon'
 
 const NAV_LINKS = [
-	{ label: 'ABOUT', href: '/about' },
-	{ label: 'BENEFITS', href: '/benefits' },
 	{ label: 'INGREDIENTS', href: '/ingredients' },
 	{ label: 'TEAM', href: '/team' },
 	{ label: 'INVESTORS', href: '/investors' },
+	{ label: 'BLOG', href: '/blog' },
+	{ label: 'FAQ', href: '/faq' },
 	{ label: 'CONTACT US', href: '/contact' },
 ] as const
 
@@ -22,23 +22,18 @@ export function Header() {
 
 	return (
 		<>
-			<header className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
-				{/* Scroll-driven white panel with black bottom border, fading out below into a soft gradient */}
+			<header className="fixed top-14 md:top-16 left-0 right-0 z-50 pointer-events-none">
+				{/* Scroll-driven translucent panel that fades in but stays semi-transparent */}
 				<motion.div
 					aria-hidden
 					style={{ opacity: bgOpacity }}
 					className="absolute inset-x-0 top-0"
 				>
-					<div className="h-20 bg-white border-b border-black" />
-					<div className="h-10 bg-gradient-to-b from-white to-transparent" />
+					<div className="h-20 bg-white/55 backdrop-blur-md" />
+					<div className="h-10 bg-gradient-to-b from-white/55 to-transparent" />
 				</motion.div>
 
-				<div className="relative max-w-7xl mx-auto px-4 h-20 flex justify-between items-center gap-4 pointer-events-auto">
-					<div className="border-2 border-black bg-white px-3 py-1.5 md:px-4 md:py-2 max-w-xs md:max-w-md">
-						<p className="text-[10px] md:text-xs font-extrabold uppercase tracking-tight leading-tight text-black">
-							<span className="font-black">WARNING:</span> This product contains nicotine. Nicotine is an addictive chemical.
-						</p>
-					</div>
+				<div className="relative max-w-7xl mx-auto px-4 h-20 flex justify-end items-center gap-4 pointer-events-auto">
 					<motion.button
 						style={{ color: textColor }}
 						onClick={() => setIsMenuOpen(!isMenuOpen)}

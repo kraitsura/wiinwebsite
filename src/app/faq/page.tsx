@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { PageHeader } from "@/components/layout/page-header"
-import { Footer } from "@/components/layout/footer"
 import { ChevronDown, Search } from "lucide-react"
 
 interface FAQ {
@@ -192,7 +191,6 @@ export default function FAQPage() {
           </motion.div>
         </motion.div>
       </div>
-      <Footer />
     </div>
   )
 }

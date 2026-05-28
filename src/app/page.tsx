@@ -5,6 +5,7 @@ import { Header } from '@/components/layout/header'
 import { LoadingScreen } from '@/components/common/loading-screen'
 import { HeroSection } from '@/components/sections/hero-section'
 import { MissionSection } from '@/components/sections/mission-section'
+import { OurStorySection } from '@/components/sections/our-story-section'
 import { useScrollAnimation, useHeroLoadAnimation } from '@/hooks/use-scroll-animation'
 import { useScrollToTop } from '@/hooks/use-scroll-to-top'
 import { WIINING_WAY_ANIMATIONS } from '@/lib/constants/animations'
@@ -38,6 +39,8 @@ export default function Page() {
 				titleRef={wiiningWayTitleRef as React.RefObject<HTMLHeadingElement>}
 				cardsRef={wiiningWayCardsRef as React.RefObject<HTMLDivElement>}
 			/>
+
+			<OurStorySection />
 		</motion.main>
 	)
 }

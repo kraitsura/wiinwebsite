@@ -62,7 +62,7 @@ const NICOTINE: Ingredient = {
 
 const NIXODINE: Ingredient = {
   id: "nixodine",
-  title: "NIXODINE",
+  title: "WiiN DAILY COMPLEX™",
   subtitle: "PROPRIETARY DERIVATIVE, DUAL DELIVERY",
   description:
     "WiiN's proprietary nicotine derivative in a dual-format blend of bitartrate salt and polacrilin ion-exchange resin. The bitartrate provides smooth, controllable oral absorption; the resin releases gradually with saliva for a steady, extended curve. Engineered as a cleaner, smarter alternative to traditional nicotine.",
@@ -83,7 +83,7 @@ export const PRODUCTS: Record<Product["slug"], Product> = {
   },
   nixodine: {
     slug: "nixodine",
-    name: "Nixodine",
+    name: "WiiN Daily Complex™",
     formulaName: "WiiN Daily Complex with NAD+",
     ingredients: [
       NIXODINE,

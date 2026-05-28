@@ -1,29 +1,37 @@
 "use client"
 
 import { PageHeader } from "@/components/layout/page-header"
-import { Footer } from "@/components/layout/footer"
-import { motion, useInView } from "framer-motion"
+import { motion } from "framer-motion"
 import Image from "next/image"
-import { useRef } from "react"
 
 const teamMembers = [
-  {
-    id: "hammer",
-    name: "HAMMER",
-    role: "VP OF SALES",
-    description: "Hammer brings decades of experience in the energy drink industry and a passion for natural, sustainable ingredients. As VP of Sales, Hammer leads go-to-market strategy and revenue growth.",
-  },
   {
     id: "doug",
     name: "DOUG",
     role: "CO-FOUNDER",
     description: "Doug is a visionary entrepreneur with a deep understanding of brand building and market strategy. Doug oversees business operations and strategic partnerships at WiiN.",
+    image: "/headshots/doug.png",
   },
   {
     id: "cathy",
     name: "CATHY",
     role: "CO-FOUNDER",
     description: "Cathy is a creative force with expertise in design and customer experience. She leads the creative vision and ensures WiiN connects authentically with its community.",
+    image: "/headshots/cat.png",
+  },
+  {
+    id: "karen",
+    name: "KAREN MORAN",
+    role: "SAAS CFO • STRATEGIX THINKER • FINANCIAL STORYTELLER",
+    description: "Karen is a SaaS CFO and strategic thinker who turns numbers into narrative. She leads financial strategy at WiiN, translating performance into the story that drives growth and aligns the team.",
+    image: "/headshots/karen.png",
+  },
+  {
+    id: "hammer",
+    name: "HAMMER",
+    role: "VP OF SALES",
+    description: "Hammer brings decades of experience in the energy drink industry and a passion for natural, sustainable ingredients. As VP of Sales, Hammer leads go-to-market strategy and revenue growth.",
+    image: "/placeholder-user.jpg",
   },
 ]
 
@@ -50,68 +58,37 @@ const itemVariants = {
   },
 }
 
-function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: number }) {
-  const cardRef = useRef(null)
-  const isInView = useInView(cardRef, {
-    margin: "-20% 0px -20% 0px",
-    once: false
-  })
-
+function TeamCard({ member }: { member: typeof teamMembers[0] }) {
   return (
     <motion.section
-      ref={cardRef}
       id={member.id}
       variants={itemVariants}
       className="group h-full"
-      data-active={isInView}
     >
-      {/* Card container */}
-      <div className="relative border-2 border-foreground h-full flex flex-col p-4 sm:p-6 lg:p-8">
-        {/* Content Section */}
-        <div className="space-y-3 sm:space-y-4 flex-1 flex flex-col">
-          {/* Name & Role with Profile Image */}
-          <div className="flex flex-col lg:flex-row items-center lg:items-start gap-3 sm:gap-4 lg:gap-8 pb-3 sm:pb-4 border-b border-border/50">
-            {/* Profile Image */}
-            <div
-              className="transition-transform duration-700 ease-out flex-shrink-0 lg:-mt-2"
-              style={{
-                transform: isInView ? 'scale(1.20)' : 'scale(1)'
-              }}
-            >
-              <div className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-16 lg:h-16 rounded-full overflow-hidden border-2 border-foreground bg-primary shadow-2xl transition-transform duration-500 group-hover:scale-125">
-                <Image
-                  src="/placeholder-user.jpg"
-                  alt={member.name}
-                  fill
-                  className="object-cover"
-                />
-              </div>
-            </div>
-
-            {/* Name & Role Text */}
-            <div className="flex-1 space-y-1 text-center lg:text-left">
-              <h2 className="text-lg sm:text-xl lg:text-3xl font-bold uppercase tracking-wider leading-tight">
-                {member.name}
-              </h2>
-              <p className="text-xs sm:text-sm uppercase tracking-widest text-muted-foreground">
-                {member.role}
-              </p>
-            </div>
-          </div>
-
-          {/* Description */}
-          <div className="flex-1">
-            <p className="text-sm leading-relaxed text-muted-foreground text-center lg:text-left">
-              {member.description}
-            </p>
-          </div>
+      <div className="relative h-full flex flex-col lg:flex-row gap-4 lg:gap-8 items-center lg:items-stretch">
+        {/* Image — top on mobile, left on desktop */}
+        <div className="relative w-2/3 sm:w-1/2 lg:w-auto lg:h-full aspect-[4/5] flex-shrink-0 overflow-hidden rounded-full max-h-[42vh] lg:max-h-none">
+          <Image
+            src={member.image}
+            alt={member.name}
+            fill
+            className="object-cover transition-transform duration-[900ms] ease-out group-hover:scale-[1.03]"
+          />
         </div>
 
-        {/* Bottom accent */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-1.5 bg-primary transform origin-left transition-transform duration-700 ease-out group-hover:scale-x-100"
-          style={{ transform: `scaleX(${isInView ? 1 : 0})` }}
-        />
+        {/* Info */}
+        <div className="flex-1 flex flex-col justify-center text-center lg:text-left transition-transform duration-500 ease-out lg:group-hover:translate-x-1">
+          <p className="text-[10px] sm:text-xs uppercase tracking-[0.22em] text-muted-foreground/70 mb-2">
+            {member.role}
+          </p>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight leading-[1.05] mb-3">
+            {member.name}
+          </h2>
+          <div className="h-px w-8 bg-foreground/20 mb-4 mx-auto lg:mx-0 transition-all duration-500 ease-out group-hover:w-16 group-hover:bg-primary" />
+          <p className="text-sm leading-relaxed text-muted-foreground/90">
+            {member.description}
+          </p>
+        </div>
       </div>
     </motion.section>
   )
@@ -119,39 +96,39 @@ function TeamCard({ member, index }: { member: typeof teamMembers[0]; index: num
 
 export default function TeamPage() {
   return (
-    <div className="h-screen overflow-y-auto flex flex-col">
+    <div className="min-h-screen lg:h-screen flex flex-col lg:overflow-hidden">
       <PageHeader />
-      <div className="flex-1 flex flex-col max-w-[1800px] mx-auto w-full px-3 sm:px-6 lg:px-8 pb-3 sm:pb-6 lg:pb-8 pt-20 sm:pt-24 lg:pt-32">
+      <div className="flex-1 flex">
+        {/* Vertical banner — desktop only, flush to left edge */}
+        <aside className="hidden lg:flex w-12 xl:w-14 flex-shrink-0 items-center justify-center border-r border-foreground/10 pt-24">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] as const }}
+            className="[writing-mode:vertical-rl] rotate-180 text-base xl:text-lg font-light uppercase tracking-[0.45em] text-foreground/70"
+          >
+            Meet the Team
+          </motion.div>
+        </aside>
 
-        {/* Header */}
-        <motion.div
-          className="mb-3 sm:mb-4 lg:mb-8"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }}
-        >
-          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-bold mb-1 sm:mb-2 uppercase tracking-wider">
-            TEAM
+        <main className="flex-1 px-4 sm:px-6 lg:px-10 pt-20 sm:pt-24 lg:pt-24 pb-8 lg:pb-10 lg:overflow-hidden">
+          {/* Mobile heading */}
+          <h1 className="lg:hidden text-3xl sm:text-4xl font-light tracking-[0.2em] uppercase mb-6 sm:mb-8">
+            Meet the Team
           </h1>
-          <div className="h-0.5 sm:h-1 w-12 sm:w-16 bg-primary mb-2 sm:mb-3" />
-          <p className="text-xs sm:text-sm lg:text-base text-muted-foreground uppercase tracking-widest">
-            THE VISIONARIES POWERING WiiN
-          </p>
-        </motion.div>
 
-        {/* Team Grid - Takes remaining space */}
-        <motion.div
-          className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 lg:gap-6 flex-1 min-h-0"
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          {teamMembers.map((member, index) => (
-            <TeamCard key={member.id} member={member} index={index} />
-          ))}
-        </motion.div>
+          <motion.div
+            className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-10 lg:h-full"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            {teamMembers.map((member) => (
+              <TeamCard key={member.id} member={member} />
+            ))}
+          </motion.div>
+        </main>
       </div>
-      <Footer />
     </div>
   )
 }
