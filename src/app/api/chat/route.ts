@@ -19,10 +19,10 @@ Rules:
 type ChatMessage = { role: "user" | "assistant"; content: string }
 
 export async function POST(req: NextRequest) {
-  const apiKey = process.env.ANTHROPIC_API_KEY
+  const apiKey = process.env.OPENAI_API_KEY
   if (!apiKey) {
     return Response.json(
-      { error: "The chat assistant isn't configured yet. Add ANTHROPIC_API_KEY to enable it." },
+      { error: "The chat assistant isn't configured yet. Add OPENAI_API_KEY to enable it." },
       { status: 503 },
     )
   }
@@ -51,18 +51,16 @@ export async function POST(req: NextRequest) {
   }
 
   try {
-    const upstream = await fetch("https://api.anthropic.com/v1/messages", {
+    const upstream = await fetch("https://api.openai.com/v1/chat/completions", {
       method: "POST",
       headers: {
         "content-type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
+        authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: "claude-haiku-4-5-20251001",
+        model: "gpt-4.1-mini",
         max_tokens: 600,
-        system: SYSTEM_PROMPT,
-        messages,
+        messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
       }),
     })
 
@@ -75,7 +73,7 @@ export async function POST(req: NextRequest) {
 
     const data = await upstream.json()
     const reply: string =
-      data?.content?.[0]?.text ?? "Sorry, I couldn't generate a response just now."
+      data?.choices?.[0]?.message?.content ?? "Sorry, I couldn't generate a response just now."
     return Response.json({ reply })
   } catch {
     return Response.json({ error: "Failed to reach the assistant." }, { status: 502 })
