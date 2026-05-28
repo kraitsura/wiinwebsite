@@ -20,64 +20,6 @@ const ROTATING_IMAGES = [
   "/wiin/bluewiin.png",
 ]
 
-// California flag (stylized) paired with a surfboard — the "Made in California" mark.
-function CaliforniaSurfBadge() {
-  return (
-    <div
-      className="relative mx-auto w-full max-w-xl"
-      style={{
-        WebkitMaskImage:
-          "radial-gradient(120% 120% at 50% 40%, #000 55%, transparent 100%)",
-        maskImage:
-          "radial-gradient(120% 120% at 50% 40%, #000 55%, transparent 100%)",
-      }}
-    >
-      <svg viewBox="0 0 320 200" className="w-full h-auto drop-shadow-2xl" role="img" aria-label="Made in California">
-        {/* Flag field */}
-        <rect x="8" y="8" width="304" height="184" rx="6" fill="#f3ede1" />
-        {/* Red star, top-left */}
-        <path
-          d="M40 30 l4.2 9.4 10.3 1-7.7 7 2.1 10.2L40 52.4 30.8 57.6 32.9 47.4 25.2 40.4l10.3-1z"
-          fill="#cc2b2b"
-        />
-        {/* Grizzly bear silhouette, walking left */}
-        <path
-          d="M70 132 q4-9 13-9 l3-9 q1-13 13-15 q5-11 17-11 8 0 13 6 q4-4 9-3 l3-6 4 6 q3 0 4 4 l52 0 q11 0 17 10 q11 3 12 16 l3 9 q9 0 12 9 l-9 5-8-2-3-8-7 1 1 13-13 1-1-13-50 0 1 13-13 1-1-13-7-1-3 8-8 2z"
-          fill="#5b3b22"
-        />
-        {/* CALIFORNIA REPUBLIC */}
-        <text
-          x="160"
-          y="156"
-          textAnchor="middle"
-          fontSize="13"
-          letterSpacing="1.5"
-          fontFamily="Helvetica, Arial, sans-serif"
-          fontWeight="700"
-          fill="#1a1a1a"
-        >
-          CALIFORNIA REPUBLIC
-        </text>
-        {/* Red bottom band */}
-        <rect x="8" y="168" width="304" height="24" rx="0" fill="#cc2b2b" />
-        <rect x="8" y="186" width="304" height="6" rx="0" fill="#cc2b2b" />
-        {/* Surfboard, planted through the flag */}
-        <g transform="rotate(20 250 100)">
-          <rect x="240" y="14" width="22" height="150" rx="11" fill="url(#boardGrad)" stroke="#ffffff" strokeWidth="2" />
-          <line x1="251" y1="22" x2="251" y2="156" stroke="#ffffff" strokeWidth="2" strokeDasharray="3 5" opacity="0.8" />
-        </g>
-        <defs>
-          <linearGradient id="boardGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="#e23b2e" />
-            <stop offset="55%" stopColor="#f0612a" />
-            <stop offset="100%" stopColor="#f7a83a" />
-          </linearGradient>
-        </defs>
-      </svg>
-    </div>
-  )
-}
-
 function RotatingImages() {
   const [currentIndex, setCurrentIndex] = useState(0)
 
@@ -180,10 +122,9 @@ export function HeroSection({ titleRef, sloganRef, subtitleRef, buttonsRef }: He
           </span>
         </div>
 
-        {/* Made in California — flag + surfboard, gradient-faded */}
+        {/* Made in California — image to be added later */}
         <div className="[text-shadow:none] mb-10 w-full">
-          <CaliforniaSurfBadge />
-          <p className="mt-3 text-sm md:text-base font-bold uppercase tracking-[0.4em] text-white/90">
+          <p className="text-sm md:text-base font-bold uppercase tracking-[0.4em] text-white/90">
             Made in California
           </p>
         </div>
